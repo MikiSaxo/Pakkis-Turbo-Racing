@@ -2,55 +2,94 @@
     "DataList": [
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 351456
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 349056
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 339890
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 351776
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 329416
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 331288
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 321130
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 348998
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 336240
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 347964
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 349856
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 328618
+            }
         },
         {
             "CategoryID": "",
-            "IsCollected": false
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 335144
+            }
         }
     ]
 }
