@@ -3,7 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Cam_plan_1
+  - Cam_plan_13
+  - Cam_plan_4
+  - Cam_plan_15
+  - Cam_plan_17
+  - Cam_plan_6
+  - Cam_plan_2
+  - Cam_plan_3
+  - Cam_plan_18
+  - Cam_plan_5
+  - Cam_plan_14
+  - Cam_end
+  - Cam_plan_16
   layers:
   - Default
   - TransparentFX
@@ -13,7 +26,7 @@ TagManager:
   - UI
   - BreakIceberg
   - Ripples
-  - 
+  - PixelatedLayer
   - 
   - 
   - 
