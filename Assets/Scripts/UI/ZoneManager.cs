@@ -27,7 +27,7 @@ namespace UI
             _textList.ForEach(x => x.DOFade(1,_showTime).OnComplete(HideZone));
             _separationLine.DOFade(1, _showTime);
             _zoneNameText.text = zoneName;
-            _titleText.text = CharacterManager.Instance.Parameters.Language ? "Checkpoint" : "Point de sauvegarde";
+            //_titleText.text = CharacterManager.Instance.Parameters.Language ? "Checkpoint" : "Point de sauvegarde";
         }
     
         private void HideZone()

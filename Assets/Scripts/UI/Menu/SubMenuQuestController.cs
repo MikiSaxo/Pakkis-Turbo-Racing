@@ -5,7 +5,6 @@ using DG.Tweening;
 using Json;
 using TMPro;
 using UI.Dialog;
-using UI.Dialog.Data;
 using UI.Quest;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -88,9 +87,9 @@ namespace UI.Menu
             if (_objectsList.Count == 0)
             {
                 _questLogoImage.gameObject.SetActive(false);
-                _questTitleText.text = CharacterManager.Instance.Parameters.Language
-                    ? "No quest available for the moment"
-                    : "Pas de quête pour le moment";
+                // _questTitleText.text = CharacterManager.Instance.Parameters.Language
+                //     ? "No quest available for the moment"
+                //     : "Pas de quête pour le moment";
                 _questDescriptionText.text = String.Empty;
                 _isDoneImage.gameObject.SetActive(false);
                 return;

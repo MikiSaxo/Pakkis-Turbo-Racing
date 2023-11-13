@@ -76,7 +76,7 @@ namespace UI.Menu
 
         private void SetSkillsPoints()
         {
-            _skillPointsText.text = CharacterManager.Instance.ExperienceManagerProperty.SkillPoints.ToString();
+            // _skillPointsText.text = CharacterManager.Instance.ExperienceManagerProperty.SkillPoints.ToString();
         }
 
         #region Direction
@@ -165,14 +165,14 @@ namespace UI.Menu
 
         private void ActivateSkill()
         {
-            if (CharacterManager.Instance.ExperienceManagerProperty.SkillPoints <= 0 ||
-                _currentTile.CanBeActivated() == false || IsActive == false || IsUsable == false)
-            {
-                return;
-            }
+            // if (CharacterManager.Instance.ExperienceManagerProperty.SkillPoints <= 0 ||
+            //     _currentTile.CanBeActivated() == false || IsActive == false || IsUsable == false)
+            // {
+            //     return;
+            // }
             
             _currentTile.SetActivated(true);
-            CharacterManager.Instance.ExperienceManagerProperty.SkillPoints--;
+            // CharacterManager.Instance.ExperienceManagerProperty.SkillPoints--;
             SetSkillsPoints();
 
             //unlock line below

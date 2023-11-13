@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Fight;
 using UI.WeaponWheel;
 using UnityEngine;
 using UnityEngine.Serialization;

@@ -1,5 +1,3 @@
-using Fight;
-using Fight.Data;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

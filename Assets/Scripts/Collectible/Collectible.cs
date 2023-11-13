@@ -2,14 +2,13 @@ using System;
 using Character;
 using Collectible.Data;
 using DG.Tweening;
-using Fight;
 using Json;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Collectible
 {
-    public class Collectible : MonoBehaviour, IHittable
+    public class Collectible : MonoBehaviour
     {
         public UnityEvent OnCollected = new UnityEvent();
         public CollectibleData Data;
@@ -37,17 +36,11 @@ namespace Collectible
             transform.Rotate(Vector3.up, _rotationSpeed);
         }
 
-        public void Hit(Projectile projectile, GameObject owner, int damage)
-        {
-            OnHit.Invoke();
-            SetCollected();
-        }
-
         private void SetCollected()
         {
             gameObject.SetActive(false);
             OnCollected.Invoke();
-            CharacterManager.Instance.ExperienceManagerProperty.AddExperience(CharacterManager.Instance.ExperienceManagerProperty.Data.ExperienceGainedAtCollectible);
+            //CharacterManager.Instance.ExperienceManagerProperty.AddExperience(CharacterManager.Instance.ExperienceManagerProperty.Data.ExperienceGainedAtCollectible);
             
             CollectibleJsonFileManager instance = JsonFilesManagerSingleton.Instance.CollectibleJsonFileManagerProperty;
             if (instance != null)

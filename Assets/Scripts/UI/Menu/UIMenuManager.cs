@@ -33,16 +33,16 @@ namespace UI.Menu
                 text.DOFade(0, 0);
             }
             
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ShowPauseMenus.started += Set;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ClosePauseMenu.started += CloseMenu;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ShowPauseMenus.started += Set;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ClosePauseMenu.started += CloseMenu;
         }
 
         private void Set(InputAction.CallbackContext context)
         {
-            if (CanBeOpened == false || CharacterManager.Instance.CurrentStateBaseProperty.CanOpenMenus == false)
-            {
-                return;
-            }
+            // if (CanBeOpened == false || CharacterManager.Instance.CurrentStateBaseProperty.CanOpenMenus == false)
+            // {
+                // return;
+            // }
             SetMenu();
         }
 
@@ -53,13 +53,13 @@ namespace UI.Menu
 
         public void SetMenu()
         {
-            CharacterManager characterManager = CharacterManager.Instance;
+            // CharacterManager characterManager = CharacterManager.Instance;
 
-            characterManager.CurrentStateBaseProperty.CanCharacterMove = IsActive;
-            characterManager.CurrentStateBaseProperty.CanCharacterMakeActions = IsActive;
-            characterManager.CurrentStateBaseProperty.CanCharacterOpenWeapons = IsActive;
+            // characterManager.CurrentStateBaseProperty.CanCharacterMove = IsActive;
+            // characterManager.CurrentStateBaseProperty.CanCharacterMakeActions = IsActive;
+            // characterManager.CurrentStateBaseProperty.CanCharacterOpenWeapons = IsActive;
 
-            CharacterManager.Instance.CameraManagerProperty.CanRotateCamera = IsActive;
+            // CharacterManager.Instance.CameraManagerProperty.CanRotateCamera = IsActive;
             IsActive = IsActive == false;
 
             const float fadeTime = 0.2f;

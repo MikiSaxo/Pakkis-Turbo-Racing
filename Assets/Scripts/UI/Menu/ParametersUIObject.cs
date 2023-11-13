@@ -42,12 +42,12 @@ namespace UI.Menu
             _onPosition = _onText.rectTransform.localPosition + _offset;
             _offPosition = _offText.rectTransform.localPosition + _offset;
 
-            _isOn = _parameter switch
-            {
-                Parameter.AutoAim => CharacterManager.Instance.Parameters.AutoAim,
-                Parameter.InversedControls => CharacterManager.Instance.Parameters.InversedControls,
-                Parameter.Language => CharacterManager.Instance.Parameters.Language,
-            };
+            // _isOn = _parameter switch
+            // {
+            //     Parameter.AutoAim => CharacterManager.Instance.Parameters.AutoAim,
+            //     Parameter.InversedControls => CharacterManager.Instance.Parameters.InversedControls,
+            //     Parameter.Language => CharacterManager.Instance.Parameters.Language,
+            // };
 
             _backgroundImage.color = isActive ? _backgroundOnColor : _backgroundOffColor;
 
@@ -75,14 +75,14 @@ namespace UI.Menu
 
         private void SetParameters()
         {
-            PlayerParameters playerParameters = CharacterManager.Instance.Parameters;
-            PlayerParameters parameters = new PlayerParameters()
-            {
-                AutoAim = _parameter == Parameter.AutoAim ? _isOn : playerParameters.AutoAim,
-                InversedControls = _parameter == Parameter.InversedControls ? _isOn : playerParameters.InversedControls,
-                Language = _parameter == Parameter.Language ? _isOn : playerParameters.Language
-            };
-            CharacterManager.Instance.Parameters = parameters;
+            // PlayerParameters playerParameters = CharacterManager.Instance.Parameters;
+            // PlayerParameters parameters = new PlayerParameters()
+            // {
+            //     AutoAim = _parameter == Parameter.AutoAim ? _isOn : playerParameters.AutoAim,
+            //     InversedControls = _parameter == Parameter.InversedControls ? _isOn : playerParameters.InversedControls,
+            //     Language = _parameter == Parameter.Language ? _isOn : playerParameters.Language
+            // };
+            // CharacterManager.Instance.Parameters = parameters;
             
             SetText();
         }

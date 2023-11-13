@@ -11,7 +11,7 @@ namespace GPEs.Checkpoint
         private Transform _baseTransform;
         private void Start()
         {
-            _baseTransform = CharacterManager.Instance.transform;
+            // _baseTransform = CharacterManager.Instance.transform;
         }
 
 

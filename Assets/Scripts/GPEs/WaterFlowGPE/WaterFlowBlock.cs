@@ -65,12 +65,10 @@ namespace GPEs.WaterFlowGPE
         private void OnTriggerStay(Collider other)
         {
             CheckForKayak(other);
-            CheckForCameraShake(other);
         }
 
         private void OnTriggerExit(Collider other)
         {
-            ResetCameraShake(other);
         }
 
         /// <summary>
@@ -81,65 +79,59 @@ namespace GPEs.WaterFlowGPE
         /// <param name="collider"> The collider to check </param>
         private void CheckForKayak(Collider collider)
         {
-            KayakController kayakController = CharacterManager.Instance.KayakControllerProperty;
+            // KayakController kayakController = CharacterManager.Instance.KayakControllerProperty;
+            //
+            // if (kayakController.gameObject != collider.gameObject || WaterFlowManager == null ||
+            //     CharacterManager.Instance.CurrentStateBaseProperty.CanBeMoved == false)
+            // {
+            //     return;
+            // }
 
-            if (kayakController.gameObject != collider.gameObject || WaterFlowManager == null ||
-                CharacterManager.Instance.CurrentStateBaseProperty.CanBeMoved == false)
-            {
-                return;
-            }
-
-            WaterFlowManager.SetClosestBlockToPlayer(kayakController.transform);
-            if (IsActive == false)
-            {
-                return;
-            }
+            // WaterFlowManager.SetClosestBlockToPlayer(kayakController.transform);
+            // if (IsActive == false)
+            // {
+            //     return;
+            // }
 
 
             //In water flow
-            CharacterManager.Instance.InWaterFlow = true;
+            // CharacterManager.Instance.InWaterFlow = true;
 
             //get rotation
-            Quaternion currentRotation = kayakController.transform.rotation;
-            Vector3 currentRotationEuler = currentRotation.eulerAngles;
+            // Quaternion currentRotation = kayakController.transform.rotation;
+            // Vector3 currentRotationEuler = currentRotation.eulerAngles;
             //get target rotation
             float targetYAngle = Quaternion.LookRotation(Direction).eulerAngles.y;
-            Quaternion targetRotation = Quaternion.Euler(currentRotationEuler.x, targetYAngle, currentRotationEuler.z);
+            // Quaternion targetRotation = Quaternion.Euler(currentRotationEuler.x, targetYAngle, currentRotationEuler.z);
 
             //check if the boat is facing the flow direction or not
             const float ANGLE_TO_FACE_FLOW = 20f;
-            float angleDifference = Mathf.Abs(Mathf.Abs(currentRotationEuler.y) - Mathf.Abs(targetYAngle));
-            bool isFacingFlow = angleDifference <= ANGLE_TO_FACE_FLOW;
+            // float angleDifference = Mathf.Abs(Mathf.Abs(currentRotationEuler.y) - Mathf.Abs(targetYAngle));
+            // bool isFacingFlow = angleDifference <= ANGLE_TO_FACE_FLOW;
 
             //apply rotation
-            InputManagement inputManagement = CharacterManager.Instance.InputManagementProperty;
-            bool isMoving = inputManagement.Inputs.PaddleLeft || inputManagement.Inputs.PaddleRight ||
-                            Mathf.Abs(inputManagement.Inputs.RotateLeft) > 0.1f ||
-                            Mathf.Abs(inputManagement.Inputs.RotateRight) > 0.1f;
-            kayakController.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation,
-                isMoving ? _rotationLerpWhenMoving :
-                isFacingFlow ? _rotationLerpWhenInDirection : _rotationLerpWhenNotInDirection);
+            // InputManagement inputManagement = CharacterManager.Instance.InputManagementProperty;
+            // bool isMoving = inputManagement.Inputs.PaddleLeft || inputManagement.Inputs.PaddleRight ||
+            //                 Mathf.Abs(inputManagement.Inputs.RotateLeft) > 0.1f ||
+            //                 Mathf.Abs(inputManagement.Inputs.RotateRight) > 0.1f;
+            // kayakController.transform.rotation = Quaternion.Lerp(currentRotation, targetRotation,
+            //     isMoving ? _rotationLerpWhenMoving :
+            //     isFacingFlow ? _rotationLerpWhenInDirection : _rotationLerpWhenNotInDirection);
 
             //apply velocity by multiplying current by speed
-            Vector3 velocity = kayakController.Rigidbody.velocity;
-            float speed = _speed * (isFacingFlow ? _speed : _speed * _speedNotFacingMultiplier);
-
-            kayakController.Rigidbody.velocity = new Vector3(
-                velocity.x + speed * Mathf.Sign(velocity.x),
-                velocity.y,
-                velocity.z + speed * Mathf.Sign(velocity.z));
+            // Vector3 velocity = kayakController.Rigidbody.velocity;
+            // float speed = _speed * (isFacingFlow ? _speed : _speed * _speedNotFacingMultiplier);
+            //
+            // kayakController.Rigidbody.velocity = new Vector3(
+            //     velocity.x + speed * Mathf.Sign(velocity.x),
+            //     velocity.y,
+            //     velocity.z + speed * Mathf.Sign(velocity.z));
                     
             //balance
             double value = _balanceValue * UnityEngine.Random.Range(_balanceValueRandomMultiplierRange.x, _balanceValueRandomMultiplierRange.y);
-            CharacterManager.Instance.AddBalanceValueToCurrentSide(value);
+            // CharacterManager.Instance.AddBalanceValueToCurrentSide(value);
         }
 
-        /// <summary>
-        /// Setup the water block and its values
-        /// </summary>
-        /// <param name="direction">the direction the block has to face</param>
-        /// <param name="waterFlowManager">the waterFlowManager script managing the block</param>
-        /// <param name="width">the width of the block</param>
         public void SetupBlock(Vector3 direction, WaterFlowManager waterFlowManager, float width, float height, float depth)
         {
             WaterFlowManager = waterFlowManager;
@@ -160,32 +152,6 @@ namespace GPEs.WaterFlowGPE
             }
         }
 
-        #region Camera
-        private void CheckForCameraShake(Collider collider)
-        {
-            CameraManager _tempoCameraManager = collider.GetComponentInParent<CameraManager>();
-            if (_tempoCameraManager != null && WaterFlowManager != null)
-            {
-                _tempoCameraManager.WaterFlow = true;
-            }
-        }
-        private void ResetCameraShake(Collider other)
-        {
-            if (CharacterManager.Instance.InWaterFlow == true)
-            {
-                CharacterManager.Instance.InWaterFlow = false;
-            }
-
-            CameraManager _tempoCameraManager = other.GetComponentInParent<CameraManager>();
-            if (_tempoCameraManager != null)
-            {
-                _tempoCameraManager.WaterFlow = false;
-            }
-
-        }
-        #endregion
-
-#if UNITY_EDITOR
 
         private void OnDrawGizmos()
         {
@@ -194,6 +160,5 @@ namespace GPEs.WaterFlowGPE
             Gizmos.DrawSphere(transform.position + Direction * 2, 0.1f);
         }
 
-#endif
     }
 }

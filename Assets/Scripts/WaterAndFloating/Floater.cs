@@ -18,11 +18,11 @@ namespace WaterAndFloating
           [Header("Physic Render Update"), SerializeField] private float _renderDistance;
           [ReadOnly, SerializeField] private bool _isSimulated;
           
-          private Transform _playerTransform;
+          [SerializeField] private Transform _playerTransform;
 
           private void Start()
           {
-               _playerTransform = CharacterManager.Instance.transform;
+               // _playerTransform = CharacterManager.Instance.transform;
           }
 
           private void FixedUpdate()

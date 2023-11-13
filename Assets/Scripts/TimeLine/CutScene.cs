@@ -21,13 +21,11 @@ public class CutScene : MonoBehaviour
     {
         _trigger.SetActive(false);
         _characterManager.CurrentStateBaseProperty.CanCharacterMove = false;
-        _characterManager.CameraManagerProperty.CanMoveCameraManually = false;
     }
     private void Director_Stopped(PlayableDirector obj)
     {
         //Trigger.SetActive(true);
         _characterManager.CurrentStateBaseProperty.CanCharacterMove = true;
-        _characterManager.CameraManagerProperty.CanMoveCameraManually = true;
     }
     public void StartTimeLine()
     {

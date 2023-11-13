@@ -51,13 +51,13 @@ namespace UI
             HideBox();
             _boxTransform.DOComplete();
             
-            InputManagement manager = CharacterManager.Instance.InputManagementProperty;
-            manager.GameplayInputs.Boat.PaddleLeft.started += LeftTrigger;
-            manager.GameplayInputs.Boat.PaddleRight.started += RightTrigger;
-            manager.GameplayInputs.Boat.OpenWheelMenu.started += Y;
-            manager.GameplayInputs.Boat.RotateCamera.started += RightStick;
-            manager.GameplayInputs.Boat.StaticRotateLeft.started += LeftStick;
-            manager.GameplayInputs.Boat.StaticRotateRight.started += LeftStick;
+            // InputManagement manager = CharacterManager.Instance.InputManagementProperty;
+            // manager.GameplayInputs.Boat.PaddleLeft.started += LeftTrigger;
+            // manager.GameplayInputs.Boat.PaddleRight.started += RightTrigger;
+            // manager.GameplayInputs.Boat.OpenWheelMenu.started += Y;
+            // manager.GameplayInputs.Boat.RotateCamera.started += RightStick;
+            // manager.GameplayInputs.Boat.StaticRotateLeft.started += LeftStick;
+            // manager.GameplayInputs.Boat.StaticRotateRight.started += LeftStick;
         }
 
         private void LeftTrigger(InputAction.CallbackContext callback)
@@ -106,10 +106,10 @@ namespace UI
         private void Update()
         {
             //invicibility
-            if (_isActive)
-            {
-                CharacterManager.Instance.InvincibilityTime = 1f;
-            }
+            // if (_isActive)
+            // {
+            //     CharacterManager.Instance.InvincibilityTime = 1f;
+            // }
             
             if (_timeCooldown > 0)
             {
@@ -154,8 +154,8 @@ namespace UI
             Time.timeScale = _timeScale;
 
             _buttonImage.sprite = _currentTuto.ButtonImage;
-            _actionText.text = CharacterManager.Instance.Parameters.Language ? _currentTuto.ActionText_EN : _currentTuto.ActionText_FR;
-            _descriptionText.text = CharacterManager.Instance.Parameters.Language ? _currentTuto.DescriptionText_EN : _currentTuto.DescriptionText_FR;
+            // _actionText.text = CharacterManager.Instance.Parameters.Language ? _currentTuto.ActionText_EN : _currentTuto.ActionText_FR;
+            // _descriptionText.text = CharacterManager.Instance.Parameters.Language ? _currentTuto.DescriptionText_EN : _currentTuto.DescriptionText_FR;
             _boxTransform.localPosition = new Vector3(_currentTuto.Position.x, _currentTuto.Position.y, 0);
 
             _boxTransform.DOKill();
@@ -180,7 +180,7 @@ namespace UI
 
             if (_currentTuto.LaunchAnotherTutorialAfter == false)
             {
-                CharacterManager.Instance.InvincibilityTime = 0f;
+                // CharacterManager.Instance.InvincibilityTime = 0f;
                 return;
             }
 

@@ -23,13 +23,13 @@ public class CameraLookAtManager : MonoBehaviour
     private IEnumerator StartLookAt(float time, float endTime)
     {
         yield return new WaitForSeconds(time);
-        CharacterManager.Instance.CameraManagerProperty.CameraAnimator.Play("LookAt");
-        StartCoroutine(StopLookAt(endTime));
+        // CharacterManager.Instance.CameraManagerProperty.CameraAnimator.Play("LookAt");
+        // StartCoroutine(StopLookAt(endTime));
     }
     IEnumerator StopLookAt(float time)
     {
         yield return new WaitForSeconds(time);
-        CharacterManager.Instance.CameraManagerProperty.CameraAnimator.Play("FreeLook");
-        _hasBeenUsed = true;
+        // CharacterManager.Instance.CameraManagerProperty.CameraAnimator.Play("FreeLook");
+        // _hasBeenUsed = true;
     }
 }

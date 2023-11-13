@@ -13,7 +13,6 @@ namespace UI.Dialog
     {
         [ReadOnly] public string CategoryID;
         [ReadOnly] public bool IsCollected;
-        public DialogCreator DialogCreatorGameObject;
     }
 
     public class MemoriesJsonFileManager : MonoBehaviour
@@ -24,9 +23,6 @@ namespace UI.Dialog
         [SerializeField] private string _jsonFileID;
         
         private JsonFileManager<CollectedMemoriesData> _fileManager;
-
-        public UnityEvent OnNewDialogGet = new UnityEvent(); 
-        
 
         protected void Awake()
         {
@@ -48,22 +44,6 @@ namespace UI.Dialog
             }
 
             _fileManager.SaveToJsonFile();
-        }
-
-        public void SetDialogCollected(DialogCreator dialogCreator)
-        {
-            CollectedDialogs = _fileManager.GetDataList();
-
-            CollectedMemoriesData memory = CollectedDialogs.Find(item => item.DialogCreatorGameObject == dialogCreator);
-            if (memory != null)
-            {
-                memory.IsCollected = true;
-                memory.CategoryID = memory.DialogCreatorGameObject.CategoryID;
-            }
-            
-            WriteJsonFile();
-            
-            OnNewDialogGet.Invoke();
         }
     }
 }

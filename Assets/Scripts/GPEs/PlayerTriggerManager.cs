@@ -62,23 +62,23 @@ namespace GPEs
                 }
             }
 
-            KayakController kayakManager = CharacterManager.Instance.KayakControllerProperty;
-            for (int i = 0; i < _hits.Length; i++)
-            {
-                if (_hits[i].collider == null || _hits[i].collider.gameObject != kayakManager.gameObject)
-                {
-                    continue;
-                }
-
-                if (PropKayakController == null)
-                {
-                    PropKayakController = kayakManager;
-                    OnPlayerEntered.Invoke();
-                }
-                
-                OnPlayerStay.Invoke();
-                isKayakInTrigger = true;
-            }
+            // KayakController kayakManager = CharacterManager.Instance.KayakControllerProperty;
+            // for (int i = 0; i < _hits.Length; i++)
+            // {
+            //     if (_hits[i].collider == null || _hits[i].collider.gameObject != kayakManager.gameObject)
+            //     {
+            //         continue;
+            //     }
+            //
+            //     if (PropKayakController == null)
+            //     {
+            //         PropKayakController = kayakManager;
+            //         OnPlayerEntered.Invoke();
+            //     }
+            //     
+            //     OnPlayerStay.Invoke();
+            //     isKayakInTrigger = true;
+            // }
             
             if (PropKayakController == null || isKayakInTrigger)
             {

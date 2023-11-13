@@ -19,10 +19,10 @@ namespace UI.Menu
 
         protected virtual void Start()
         {
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuDown.started += Down;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuUp.started += Up;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuLeft.started += Left;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuRight.started += Right;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuDown.started += Down;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuUp.started += Up;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuLeft.started += Left;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuRight.started += Right;
         }
         
         #region Directions

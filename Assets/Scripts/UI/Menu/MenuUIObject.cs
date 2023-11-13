@@ -17,7 +17,7 @@ namespace UI.Menu
 
         protected virtual void Start()
         {
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ParameterMenuPressButton.started += Activate;
+            //CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ParameterMenuPressButton.started += Activate;
         }
 
         public void Initialize(Sprite image)

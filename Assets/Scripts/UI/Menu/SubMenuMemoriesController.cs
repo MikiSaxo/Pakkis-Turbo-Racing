@@ -4,7 +4,6 @@ using Character;
 using Json;
 using TMPro;
 using UI.Dialog;
-using UI.Dialog.Data;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -108,28 +107,24 @@ namespace UI.Menu
                 for (int j = 0; j < list.Count; j++)
                 {
                     CollectedMemoriesData collectedMemoryData = list[j];
-                    DialogData data = CharacterManager.Instance.Parameters.Language ? 
-                        collectedMemoryData.DialogCreatorGameObject.Dialog_EN : 
-                        collectedMemoryData.DialogCreatorGameObject.Dialog_FR;
+                    // DialogData data = CharacterManager.Instance.Parameters.Language ? 
+                    //     collectedMemoryData.DialogCreatorGameObject.Dialog_EN : 
+                    //     collectedMemoryData.DialogCreatorGameObject.Dialog_FR;
 
-                    if (collectedMemoryData.IsCollected == false || data == null ||
-                        _memoryCategories[i].CategoryID != collectedMemoryData.CategoryID) 
-                    {
-                        continue;
-                    }
+                    // if (collectedMemoryData.IsCollected == false || data == null ||
+                    //     _memoryCategories[i].CategoryID != collectedMemoryData.CategoryID) 
+                    // {
+                    //     continue;
+                    // }
                  
                     //create object
                     if (currentObject == null)
                     {
                         currentObject = Instantiate(_memoryUIObjectPrefab, _memoriesUIObjectLayout);
-                        MemoryCategory category = _memoryCategories.Find(x => x.CategoryID == collectedMemoryData.DialogCreatorGameObject.CategoryID);
-                        currentObject.SetCategoryName(category);
                         _objectsList.Add(currentObject);
                         Height++;
                     }
-                    
-                    DialogCreator dialog = JsonFilesManagerSingleton.Instance.MemoriesJsonFileManagerProperty.CollectedDialogs[j].DialogCreatorGameObject;
-                    currentObject.AddDialogData(CharacterManager.Instance.Parameters.Language ? dialog.Dialog_EN : dialog.Dialog_FR);
+                    // currentObject.AddDialogData(CharacterManager.Instance.Parameters.Language ? dialog.Dialog_EN : dialog.Dialog_FR);
                 }
             }
             

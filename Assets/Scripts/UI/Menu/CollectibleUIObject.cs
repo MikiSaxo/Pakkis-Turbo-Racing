@@ -26,18 +26,20 @@ namespace UI.Menu
 
         public override string GetName()
         {
-            bool isInEnglish = CharacterManager.Instance.Parameters.Language;
-            return Data == null ? 
-                isInEnglish ? "Mysterious collectible" : "Collectible mystère" : 
-                isInEnglish ? Data.NameEN : Data.NameFR;
+            // bool isInEnglish = CharacterManager.Instance.Parameters.Language;
+            // return Data == null ? 
+            // isInEnglish ? "Mysterious collectible" : "Collectible mystère" : 
+            // isInEnglish ? Data.NameEN : Data.NameFR;
+            return "oui";
         }
-        
+
         public override string GetDescription()
         {
-            bool isInEnglish = CharacterManager.Instance.Parameters.Language;
-            return Data == null ? 
-                isInEnglish ? "Collectible not found yet" : "Collectible pas encore trouvé" : 
-                isInEnglish ? Data.DescriptionEN : Data.DescriptionFR;
+            // bool isInEnglish = CharacterManager.Instance.Parameters.Language;
+            // return Data == null ? 
+            // isInEnglish ? "Collectible not found yet" : "Collectible pas encore trouvé" : 
+            // isInEnglish ? Data.DescriptionEN : Data.DescriptionFR;
+            return "oui";
         }
     }
 }

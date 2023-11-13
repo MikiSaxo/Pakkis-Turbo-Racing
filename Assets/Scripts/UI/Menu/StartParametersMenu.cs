@@ -52,11 +52,11 @@ namespace UI.Menu
                 _textsDictionary.Add(text);
             }
 
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuDown.started += Down;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuUp.started += Up;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuLeft.started += Left;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuRight.started += Right;
-            CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ShowLeaveMenu.started += CloseMenu;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuDown.started += Down;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuUp.started += Up;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuLeft.started += Left;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.MenuRight.started += Right;
+            // CharacterManager.Instance.InputManagementProperty.GameplayInputs.Boat.ShowLeaveMenu.started += CloseMenu;
 
             _video.loopPointReached += CheckVideoOver;
 
@@ -79,31 +79,31 @@ namespace UI.Menu
             }
 
             const float timeToSkip = 2f;
-            if (CharacterManager.Instance.InputManagementProperty.Inputs.AnyButton)
-            {
-                _timeToSkip += Time.deltaTime;
-
-                if (_timeToSkip < 0.25f)
-                {
-                    return;
-                }
-
-                _imageSkip.DOKill();
-                _imageSkip.DOFade(1, 0.2f);
-                _imageSkip.fillAmount = _timeToSkip / timeToSkip;
-
-                _textSkip.DOKill();
-                _textSkip.DOFade(1, 0.2f);
-            }
-            else
-            {
-                _timeToSkip = 0;
-
-                _imageSkip.DOKill();
-                _imageSkip.DOFade(0, 0.2f);
-                _textSkip.DOKill();
-                _textSkip.DOFade(0, 0.2f);
-            }
+            // if (CharacterManager.Instance.InputManagementProperty.Inputs.AnyButton)
+            // {
+            //     _timeToSkip += Time.deltaTime;
+            //
+            //     if (_timeToSkip < 0.25f)
+            //     {
+            //         return;
+            //     }
+            //
+            //     _imageSkip.DOKill();
+            //     _imageSkip.DOFade(1, 0.2f);
+            //     _imageSkip.fillAmount = _timeToSkip / timeToSkip;
+            //
+            //     _textSkip.DOKill();
+            //     _textSkip.DOFade(1, 0.2f);
+            // }
+            // else
+            // {
+            //     _timeToSkip = 0;
+            //
+            //     _imageSkip.DOKill();
+            //     _imageSkip.DOFade(0, 0.2f);
+            //     _textSkip.DOKill();
+            //     _textSkip.DOFade(0, 0.2f);
+            // }
 
             if (_timeToSkip < timeToSkip)
             {
@@ -167,7 +167,7 @@ namespace UI.Menu
 
             StartCoroutine(WaitShowVideo(1));
 
-            CharacterManager.Instance.CurrentStateBaseProperty.CanOpenMenus = false;
+            // CharacterManager.Instance.CurrentStateBaseProperty.CanOpenMenus = false;
         }
 
         protected override void Up(InputAction.CallbackContext context)
@@ -233,7 +233,7 @@ namespace UI.Menu
             yield return new WaitForSeconds(time);
             _video.gameObject.SetActive(false);
             MenuGameObject.SetActive(IsActive);
-            CharacterManager.Instance.IsGameLaunched = true;
+            // CharacterManager.Instance.IsGameLaunched = true;
         }
 
         private IEnumerator WaitShowVideo(float time)

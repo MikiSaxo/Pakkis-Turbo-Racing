@@ -4,7 +4,6 @@ using Character;
 using Collectible.Data;
 using Dialog;
 using TMPro;
-using UI.Dialog.Data;
 using UI.Quest;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -23,12 +22,12 @@ namespace UI.Menu
 
         public string GetTitle()
         {
-            return CharacterManager.Instance.Parameters.Language ? Data.QuestTitle_EN : Data.QuestTitle_FR;
+            return "oui"; //CharacterManager.Instance.Parameters.Language ? Data.QuestTitle_EN : Data.QuestTitle_FR;
         }
 
         public string GetDescription()
         {
-            return CharacterManager.Instance.Parameters.Language ? Data.QuestDescription_EN : Data.QuestDescription_FR;
+            return "oui"; // CharacterManager.Instance.Parameters.Language ? Data.QuestDescription_EN : Data.QuestDescription_FR;
         }
 
         public override void Set(bool isActive)

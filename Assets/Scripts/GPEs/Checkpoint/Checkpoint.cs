@@ -39,11 +39,11 @@ namespace GPEs.Checkpoint
                 return;
             }
             
-            CharacterManager.Instance.CheckpointManagerProperty.SetCheckpoint(this);
+            // CharacterManager.Instance.CheckpointManagerProperty.SetCheckpoint(this);
             _hasBeenUsed = true;
             
             _activationParticles.Play();
-            _zoneManager.ShowZone(CharacterManager.Instance.Parameters.Language ? _zoneNameEN : _zoneNameFR);
+            // _zoneManager.ShowZone(CharacterManager.Instance.Parameters.Language ? _zoneNameEN : _zoneNameFR);
             SetPlayerExperience();
 
             if (AudioManager.Instance != null)
@@ -59,8 +59,8 @@ namespace GPEs.Checkpoint
 
         private void SetPlayerExperience()
         {
-            float value = CharacterManager.Instance.ExperienceManagerProperty.Data.ExperienceGainedAtCheckpoint;
-            CharacterManager.Instance.ExperienceManagerProperty.AddExperience(value);
+            // float value = CharacterManager.Instance.ExperienceManagerProperty.Data.ExperienceGainedAtCheckpoint;
+            // CharacterManager.Instance.ExperienceManagerProperty.AddExperience(value);
         }
 
 #if UNITY_EDITOR

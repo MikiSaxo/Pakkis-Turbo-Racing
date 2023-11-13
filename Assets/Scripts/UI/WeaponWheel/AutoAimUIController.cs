@@ -23,28 +23,28 @@ namespace UI.WeaponWheel
 
         public void ShowAutoAimUI(bool show)
         {
-            if (CharacterManager.Instance.Parameters.AutoAim == false)
-            {
-                show = false;
-            }
+            // if (CharacterManager.Instance.Parameters.AutoAim == false)
+            // {
+                // show = false;
+            // }
             _autoAimImage.DOFade(show ? 1f : 0f, 0.2f);
         }
 
         public void ShowAutoAimCircle(bool show)
         {
-            if (CharacterManager.Instance.Parameters.AutoAim == false)
-            {
-                show = false;
-            }
+            // if (CharacterManager.Instance.Parameters.AutoAim == false)
+            // {
+                // show = false;
+            // }
             _autoAimCircle.DOFade(show ? 0.15f : 0f, 0.2f);
         }
         
         public void SetAutoAimUI(float percentage, Vector3 aimPosition)
         {
-            if (CharacterManager.Instance.Parameters.AutoAim == false)
-            {
-                return;
-            }
+            // if (CharacterManager.Instance.Parameters.AutoAim == false)
+            // {
+                // return;
+            // }
 
             float speed = (percentage >= 1 ? _lockedRotationSpeed : _baseRotationSpeed) * Time.deltaTime * 100;
             transform.Rotate(new Vector3(0, 0, 1), speed);

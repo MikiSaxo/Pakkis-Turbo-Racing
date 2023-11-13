@@ -55,10 +55,10 @@ namespace Kayak
 
         private void OnCollisionEnter(Collision collision)
         {
-            CharacterManager characterManager = CharacterManager.Instance;
+            //CharacterManager characterManager = CharacterManager.Instance;
             float value = collision.relativeVelocity.magnitude / Data.KayakValues.CollisionToBalanceMagnitudeDivider;
             //Debug.Log($"collision V.M. :{Math.Round(collision.relativeVelocity.magnitude)} -> {Math.Round(value,2)}");
-            characterManager.AddBalanceValueToCurrentSide(value);
+            // characterManager.AddBalanceValueToCurrentSide(value);
             OnKayakCollision.Invoke();
         }
 
@@ -71,11 +71,14 @@ namespace Kayak
             KayakParameters kayakValues = Data.KayakValues;
 
             float velocityX = velocity.x;
-            float maxClamp = CharacterManager.Instance.SprintInProgress ? 
-                kayakValues.MaximumFrontSprintVelocity :
-                kayakValues.MaximumFrontVelocity * CharacterManager.Instance.PlayerStats.MaximumSpeedMultiplier;
-            velocityX = Mathf.Clamp(velocityX, -maxClamp, maxClamp);
+            // float maxClamp = CharacterManager.Instance.SprintInProgress ? 
+            //     kayakValues.MaximumFrontSprintVelocity :
+            //     kayakValues.MaximumFrontVelocity * CharacterManager.Instance.PlayerStats.MaximumSpeedMultiplier;
+            float maxClamp = kayakValues.MaximumFrontSprintVelocity;
 
+
+            velocityX = Mathf.Clamp(velocityX, -maxClamp, maxClamp);
+            
             float velocityZ = velocity.z;
             velocityZ = Mathf.Clamp(velocityZ, -maxClamp, maxClamp);
 

@@ -61,7 +61,7 @@ namespace UI.SkillTree
 
             if (_isUnlocked)
             {
-                CharacterManager.Instance.UIMenuManagerRef.RemoveFromDictionary(_lockIcon);
+                // CharacterManager.Instance.UIMenuManagerRef.RemoveFromDictionary(_lockIcon);
             }
         }
 
@@ -80,44 +80,44 @@ namespace UI.SkillTree
 
         private void SetCapacityEffect()
         {
-            PlayerStatsMultipliers character = CharacterManager.Instance.PlayerStats;
-            switch (_capacity)
-            {
-                case CapacityType.BreakingDistance:
-                    character.BreakingDistanceMultiplier = _multiplier;
-                    break;
-                case CapacityType.MaximumSpeed:
-                    character.MaximumSpeedMultiplier = _multiplier;
-                    break;
-                case CapacityType.RotationSpeed:
-                    character.RotationSpeedMultiplier = _multiplier;
-                    break;
-                case CapacityType.UnbalanceThreshold:
-                    character.UnbalancedThresholdMultiplier = _multiplier;
-                    break;
-                case CapacityType.Sprint:
-                    PlayerAbilities abilities = CharacterManager.Instance.Abilities;
-                    abilities.SprintUnlock = true;
-                    CharacterManager.Instance.Abilities = abilities;
-                    break;
-                case CapacityType.LaunchDistance:
-                    character.WeaponLaunchDistanceMultiplier = _multiplier;
-                    break;
-                case CapacityType.ChargingTimeReduction:
-                    character.ChargeTimeReducingMultiplier = _multiplier;
-                    break;
-                case CapacityType.MoreExperience:
-                    character.ExperienceGainMultiplier = _multiplier;
-                    break;
-                case CapacityType.SednaRecuperationAfterShoot:
-                    character.WeaponRecallTimeMultiplier = _multiplier;
-                    break;
-                case CapacityType.IcebergDestruction:
-                    PlayerAbilities abilitiesDestroy = CharacterManager.Instance.Abilities;
-                    abilitiesDestroy.CanDestroyIceberg = true;
-                    CharacterManager.Instance.Abilities = abilitiesDestroy;
-                    break;
-            }
+            // PlayerStatsMultipliers character = CharacterManager.Instance.PlayerStats;
+            // switch (_capacity)
+            // {
+            //     case CapacityType.BreakingDistance:
+            //         character.BreakingDistanceMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.MaximumSpeed:
+            //         character.MaximumSpeedMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.RotationSpeed:
+            //         character.RotationSpeedMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.UnbalanceThreshold:
+            //         character.UnbalancedThresholdMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.Sprint:
+            //         PlayerAbilities abilities = CharacterManager.Instance.Abilities;
+            //         abilities.SprintUnlock = true;
+            //         CharacterManager.Instance.Abilities = abilities;
+            //         break;
+            //     case CapacityType.LaunchDistance:
+            //         character.WeaponLaunchDistanceMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.ChargingTimeReduction:
+            //         character.ChargeTimeReducingMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.MoreExperience:
+            //         character.ExperienceGainMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.SednaRecuperationAfterShoot:
+            //         character.WeaponRecallTimeMultiplier = _multiplier;
+            //         break;
+            //     case CapacityType.IcebergDestruction:
+            //         PlayerAbilities abilitiesDestroy = CharacterManager.Instance.Abilities;
+            //         abilitiesDestroy.CanDestroyIceberg = true;
+            //         CharacterManager.Instance.Abilities = abilitiesDestroy;
+            //         break;
+            // }
         }
 
         public void SetSkillTile(Color color)
@@ -127,12 +127,12 @@ namespace UI.SkillTree
 
         public string GetTitle()
         {
-            return CharacterManager.Instance.Parameters.Language ? _title_EN : _title_FR;
+            return "oui"; //CharacterManager.Instance.Parameters.Language ? _title_EN : _title_FR;
         }
         
         public string GetDescription()
         {
-            return CharacterManager.Instance.Parameters.Language ? _description_EN : _description_FR;
+            return "oui"; //CharacterManager.Instance.Parameters.Language ? _description_EN : _description_FR;
         }
 
         public override void Set(bool isActive)

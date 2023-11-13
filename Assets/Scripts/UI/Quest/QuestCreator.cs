@@ -13,9 +13,9 @@ namespace UI.Quest
         {
             JsonFilesManagerSingleton.Instance.QuestJsonFileManagerProperty.SetQuestCollected(this, isDone);
             
-            LaunchAction(isDone ? 
-                CharacterManager.Instance.NotificationsUIController.LaunchQuestCompletedNotification :
-                CharacterManager.Instance.NotificationsUIController.LaunchQuestNotification);
+            // LaunchAction(isDone ? 
+            //     CharacterManager.Instance.NotificationsUIController.LaunchQuestCompletedNotification :
+            //     CharacterManager.Instance.NotificationsUIController.LaunchQuestNotification);
         }
 
         private void LaunchAction(Action action)
