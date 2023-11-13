@@ -121,6 +121,7 @@ namespace Character
         }
         public void OnRotaRight(InputAction.CallbackContext context)
         {
+            // RotateRight = context.ReadValue<bool>();
             RotateRight = context.action.triggered;
         }
         

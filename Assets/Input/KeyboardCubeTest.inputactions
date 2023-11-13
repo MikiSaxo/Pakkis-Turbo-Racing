@@ -15,18 +15,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RotateLeft",
+                    "name": "PaddleRight",
                     "type": "Button",
-                    "id": "7f1a2d24-94cf-4d70-bead-031225b0fa14",
+                    "id": "99251e5d-82da-4d4a-8eb4-fb2943c6b551",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
                 {
-                    "name": "PaddleRight",
+                    "name": "RotateLeft",
                     "type": "Button",
-                    "id": "99251e5d-82da-4d4a-8eb4-fb2943c6b551",
+                    "id": "7f1a2d24-94cf-4d70-bead-031225b0fa14",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -56,12 +56,56 @@
                 },
                 {
                     "name": "",
+                    "id": "f5124c1e-6df9-4009-9f7b-94cc0b3984dd",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PaddleLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a5f734bd-42f1-48e7-b3bf-56d77bc481e3",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
                     "action": "PaddleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e8949ba2-5f72-4e7c-924f-edf2e1806a08",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PaddleRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "74a622a8-e011-4eaf-8cd2-38295c30530e",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "RotateRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5ff70dd-6b67-4b24-be31-d77ec52800d4",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "RotateRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -78,12 +122,12 @@
                 },
                 {
                     "name": "",
-                    "id": "74a622a8-e011-4eaf-8cd2-38295c30530e",
-                    "path": "<Keyboard>/a",
+                    "id": "98a3becd-59eb-4314-9908-f0093cc34418",
+                    "path": "<Gamepad>/leftStick/right",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard",
-                    "action": "RotateRight",
+                    "groups": "Gamepad",
+                    "action": "RotateLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -98,6 +142,17 @@
                 {
                     "devicePath": "<Keyboard>",
                     "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": [
+                {
+                    "devicePath": "<Gamepad>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]
