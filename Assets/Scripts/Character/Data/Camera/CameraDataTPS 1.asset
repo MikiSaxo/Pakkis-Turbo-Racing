@@ -83,7 +83,7 @@ MonoBehaviour:
   <BasePosition>k__BackingField: {x: 0, y: 3, z: 0}
   <BaseDistance>k__BackingField: 10
   <BaseRotation>k__BackingField: {x: 18, y: 0, z: 0}
-  <BaseFOV>k__BackingField: 56
+  <BaseFOV>k__BackingField: 60
   <TopClamp>k__BackingField: 64.44
   <BottomClamp>k__BackingField: -10
   <MultiplierValueRotation>k__BackingField: 0.5
@@ -93,7 +93,7 @@ MonoBehaviour:
   <LerpRotationNotMoving>k__BackingField: 0.003
   <LerpPositionWhenRotating>k__BackingField: 0.0324
   <LerpRotationWhenPlayerRotating>k__BackingField: 0.0324
-  <LerpFOV>k__BackingField: 0.01
+  <LerpFOV>k__BackingField: 0.1
   <TimerCameraReturnBehindBoat>k__BackingField: 8
   <MultiplierValuePosition>k__BackingField: 0.28
   <MultiplierFovCamera>k__BackingField: 1.3
