@@ -188,8 +188,8 @@ namespace Character.State
         private void ManageKayakMovementInputs()
         {
             const float timeToSetLastInput = 1.5f;
-            bool staticInput = _inputs.Inputs.RotateLeft != 0 || _inputs.Inputs.RotateRight != 0;
-            bool paddleInput = _inputs.Inputs.PaddleLeft || _inputs.Inputs.PaddleRight;
+            bool staticInput = CharacterManagerRef.RotateLeft != false || CharacterManagerRef.RotateRight != false;
+            bool paddleInput = CharacterManagerRef.PaddleLeft || CharacterManagerRef.PaddleRight;
 
             if (((paddleInput == false) ||
                  (_lastInputType == RotationType.Paddle) ||
@@ -289,12 +289,12 @@ namespace Character.State
         private void HandlePaddleMovement()
         {
             //input -> paddleMovement
-            if (_inputs.Inputs.PaddleRight && _inputs.Inputs.PaddleLeft)
+            if (CharacterManagerRef.PaddleRight && CharacterManagerRef.PaddleLeft)
             {
                 HandleBothPress();
             }
 
-            if (_inputs.Inputs.PaddleLeft && _leftPaddleCooldown <= 0 && _inputs.Inputs.PaddleRight == false)
+            if (CharacterManagerRef.PaddleLeft && _leftPaddleCooldown <= 0 && CharacterManagerRef.PaddleRight == false)
             {
                 Direction direction =
                     CharacterManagerRef.Parameters.InversedControls ? Direction.Right : Direction.Left;
@@ -304,7 +304,7 @@ namespace Character.State
                 Paddle(direction);
             }
 
-            if (_inputs.Inputs.PaddleRight && _rightPaddleCooldown <= 0 && _inputs.Inputs.PaddleLeft == false)
+            if (CharacterManagerRef.PaddleRight && _rightPaddleCooldown <= 0 && CharacterManagerRef.PaddleLeft == false)
             {
                 Direction direction =
                     CharacterManagerRef.Parameters.InversedControls ? Direction.Left : Direction.Right;
@@ -411,7 +411,7 @@ namespace Character.State
             bool isFast = Mathf.Abs(_kayakRigidbody.velocity.x + _kayakRigidbody.velocity.z) >= 0.1f;
 
             //left
-            if (_inputs.Inputs.RotateLeft > _inputs.Inputs.Deadzone)
+            if (CharacterManagerRef.RotateLeft)// > _inputs.Inputs.Deadzone)
             {
                 if (isFast)
                 {
@@ -430,7 +430,7 @@ namespace Character.State
             }
 
             //right
-            if (_inputs.Inputs.RotateRight > _inputs.Inputs.Deadzone)
+            if (CharacterManagerRef.RotateRight)// > _inputs.Inputs.Deadzone)
             {
                 if (isFast)
                 {

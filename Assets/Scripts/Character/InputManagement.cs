@@ -30,11 +30,8 @@ namespace Character
         {
             InputsEnum inputsEnum = Inputs;
             
-            inputsEnum.PaddleLeft = _gameplayInputs.Boat.PaddleLeft.ReadValue<float>() > DeadzoneJoystickTrigger;
-            inputsEnum.PaddleRight = _gameplayInputs.Boat.PaddleRight.ReadValue<float>() > DeadzoneJoystickTrigger;
-
-            inputsEnum.RotateLeft = _gameplayInputs.Boat.StaticRotateLeft.ReadValue<float>();
-            inputsEnum.RotateRight = _gameplayInputs.Boat.StaticRotateRight.ReadValue<float>();
+            // inputsEnum.RotateLeft = _gameplayInputs.Boat.StaticRotateLeft.ReadValue<float>();
+            // inputsEnum.RotateRight = _gameplayInputs.Boat.StaticRotateRight.ReadValue<float>();
 
             inputsEnum.Deadzone = DeadzoneJoystick;
 
@@ -43,16 +40,34 @@ namespace Character
 
             Inputs = inputsEnum;
         }
+
+        // public void PaddleLeft(InputAction.CallbackContext context)
+        // {
+        //     InputsEnum inputsEnum = Inputs;
+        //     // inputsEnum.PaddleLeft = _gameplayInputs.Boat.PaddleLeft.ReadValue<float>() > DeadzoneJoystickTrigger;
+        //     // inputsEnum.PaddleLeft = context.ReadValue<bool>();
+        //     // inputsEnum.PaddleLeft = context.action.triggered;
+        //     Debug.Log("aloed");
+        //     Inputs = inputsEnum;
+        // }
+        // public void PaddleRight(InputAction.CallbackContext context)
+        // {
+        //     InputsEnum inputsEnum = Inputs;
+        //     // inputsEnum.PaddleRight = _gameplayInputs.Boat.PaddleRight.ReadValue<float>() > DeadzoneJoystickTrigger;
+        //     inputsEnum.PaddleRight = context.ReadValue<bool>();
+        //     inputsEnum.PaddleRight = context.action.triggered;
+        //     Inputs = inputsEnum;
+        // }
     }
 
     [Serializable]
     public struct InputsEnum
     {
-        public bool PaddleLeft;
-        public bool PaddleRight;
+        // public bool PaddleLeft;
+        // public bool PaddleRight;
         
-        public float RotateLeft;
-        public float RotateRight;
+        // public float RotateLeft;
+        // public float RotateRight;
         
         public float Deadzone;
         

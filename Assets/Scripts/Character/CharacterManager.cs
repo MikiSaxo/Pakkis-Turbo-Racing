@@ -9,6 +9,7 @@ using UI;
 using UI.Menu;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 namespace Character
 {
@@ -38,6 +39,12 @@ namespace Character
         [field: SerializeField] public PlayerParameters Parameters { get; set; }
         [field: SerializeField] public PlayerAbilities Abilities { get; set; }
         [field: SerializeField] public ScriptForDebug ScriptDebug { get; private set; }
+        
+        
+        [field: SerializeField] public bool PaddleLeft { get; private set; }
+        [field: SerializeField] public bool PaddleRight { get; private set; }
+        [field: SerializeField] public bool RotateLeft { get; private set; }
+        [field: SerializeField] public bool RotateRight { get; private set; }
 
         #endregion
 
@@ -74,7 +81,6 @@ namespace Character
             CharacterNavigationState navigationState = new CharacterNavigationState(this);
             CurrentStateBaseProperty = navigationState;
             CurrentStateBaseProperty.Initialize(this);
-            print(CurrentStateBaseProperty);
 
             CurrentStateBaseProperty.EnterState(this);
 
@@ -100,6 +106,24 @@ namespace Character
                 IKPlayerControl.SetPaddle();
             }
         }
+        
+        public void OnPaddleLeft(InputAction.CallbackContext context)
+        {
+            PaddleLeft = context.action.triggered;
+        }
+        public void OnPaddleRight(InputAction.CallbackContext context)
+        {
+            PaddleRight = context.action.triggered;
+        }
+        public void OnRotaLeft(InputAction.CallbackContext context)
+        {
+            RotateLeft = context.action.triggered;
+        }
+        public void OnRotaRight(InputAction.CallbackContext context)
+        {
+            RotateRight = context.action.triggered;
+        }
+        
         private void FixedUpdate()
         {
             CurrentStateBaseProperty.FixedUpdate(this);
