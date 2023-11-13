@@ -29,7 +29,7 @@ namespace Character.State
         private float _staticInputTimer;
 
         //kayak
-        private Vector2 _paddleForceValue;
+        // private Vector2 _paddleForceValue;
         private float _leftPaddleCooldown, _rightPaddleCooldown;
         private Direction _lastPaddleSide;
 

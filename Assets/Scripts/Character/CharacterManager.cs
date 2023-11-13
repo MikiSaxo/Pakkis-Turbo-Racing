@@ -38,7 +38,6 @@ namespace Character
         [field: SerializeField] public IKControl IKPlayerControl { get; private set; }
         [field: SerializeField] public PlayerParameters Parameters { get; set; }
         [field: SerializeField] public PlayerAbilities Abilities { get; set; }
-        [field: SerializeField] public ScriptForDebug ScriptDebug { get; private set; }
         
         
         [field: SerializeField] public bool PaddleLeft { get; private set; }

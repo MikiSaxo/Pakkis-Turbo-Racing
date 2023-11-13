@@ -17,7 +17,6 @@ namespace WaterAndFloating
         [SerializeField] private Transform _waterPlacing;
 
         [Header("Render"), SerializeField] private int _renderDistance = 20;
-        [SerializeField] private Transform _playerTransform;
         
         [SerializeField] private Octave _octave;
 
@@ -202,7 +201,7 @@ namespace WaterAndFloating
             float octaveHeight = octave.Height;
             
             //render values setup
-            Vector3 position = _playerTransform.position;
+            Vector3 position = Vector3.zero;
             Vector3 renderCenter = _vertices[FindIndexOfVerticeAt(new Vector2(position.x,position.z), true)];
             int xStart = (int)renderCenter.x - _renderDistance;
             int xEnd = (int)renderCenter.x + _renderDistance;

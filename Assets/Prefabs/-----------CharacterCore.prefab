@@ -100,7 +100,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8448442312743378426
 Transform:
   m_ObjectHideFlags: 0
@@ -109,7 +109,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773810488554746480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 118, y: 0, z: 317.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: ce0d8a33a11dbf14a82f574dea16c944,
+  m_Actions: {fileID: -944628639613478452, guid: 78a62c5a7f90e8542885f7df5c1e3d2c,
     type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
@@ -159,8 +159,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: ec7d4462-88fd-4f43-8928-11e27232ea53
-    m_ActionName: Boat/PaddleLeft[/Keyboard/q,/XInputControllerWindows/leftTrigger]
+    m_ActionId: ead24d1a-5ff2-488e-bdb3-31e57f69e5f4
+    m_ActionName: Gameplay/PaddleLeft[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4538293405583948199}
+        m_TargetAssemblyTypeName: Character.CharacterManager, Assembly-CSharp
+        m_MethodName: OnRotaLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 7f1a2d24-94cf-4d70-bead-031225b0fa14
+    m_ActionName: Gameplay/RotateLeft[/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4538293405583948199}
@@ -175,23 +191,27 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 90c3aca1-1a2b-4b05-a9a6-0ecf98f6952b
-    m_ActionName: Boat/PaddleRight[/Keyboard/e,/XInputControllerWindows/rightTrigger]
+    m_ActionId: 99251e5d-82da-4d4a-8eb4-fb2943c6b551
+    m_ActionName: Gameplay/PaddleRight[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 31fcf997-f244-4d71-9596-0801daf74d3f
-    m_ActionName: Boat/StaticRotateLeft[/Keyboard/d,/XInputControllerWindows/leftStick/right]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 68f74b2f-e772-4377-9710-58135b74f550
-    m_ActionName: Boat/StaticRotateRight[/Keyboard/a,/XInputControllerWindows/leftStick/left]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b3be2c60-e795-4356-be41-3ca008864ecb
-    m_ActionName: Boat/AnyButton[/Keyboard/anyKey,/Mouse/rightButton,/Mouse/middleButton,/Mouse/leftButton,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonWest,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/right,/XInputControllerWindows/dpad/up,/XInputControllerWindows/leftShoulder,/XInputControllerWindows/leftStickPress,/XInputControllerWindows/leftTrigger,/XInputControllerWindows/rightShoulder,/XInputControllerWindows/rightStickPress,/XInputControllerWindows/rightTrigger,/XInputControllerWindows/select,/XInputControllerWindows/start]
+      m_Calls:
+      - m_Target: {fileID: 4538293405583948199}
+        m_TargetAssemblyTypeName: Character.CharacterManager, Assembly-CSharp
+        m_MethodName: OnRotaRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e3f2c7de-b4e4-4c36-b230-2ebc68ff69cb
+    m_ActionName: Gameplay/RotateRight[/Keyboard/a]
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Boat
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &1257289580710644331
@@ -5328,7 +5348,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1985888175447976341
 Transform:
   m_ObjectHideFlags: 0
@@ -5709,10 +5729,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3165974726467816125}
   - component: {fileID: 4652486189593864006}
-  - component: {fileID: 8842962285688173174}
   - component: {fileID: 4538293405583948199}
   - component: {fileID: 3511012072761651989}
-  - component: {fileID: 4416736119372952404}
   - component: {fileID: 486807158916732135}
   m_Layer: 0
   m_Name: Character
@@ -5750,7 +5768,7 @@ Rigidbody:
   m_GameObject: {fileID: 8493843328887140995}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -5766,29 +5784,8 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 116
   m_CollisionDetection: 0
---- !u!114 &8842962285688173174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493843328887140995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59559eeed1ba44e9ab591764c81dbbe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeadzoneJoystick: 0.05
-  DeadzoneJoystickTrigger: 0.3
-  <Inputs>k__BackingField:
-    PaddleRight: 0
-    RotateLeft: 0
-    RotateRight: 0
-    Deadzone: 0
-    AnyButton: 0
-    Start: 0
 --- !u!114 &4538293405583948199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5802,7 +5799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <KayakControllerProperty>k__BackingField: {fileID: 403038947937479963}
-  <InputManagementProperty>k__BackingField: {fileID: 8842962285688173174}
+  <InputManagementProperty>k__BackingField: {fileID: 0}
   <PaddleAnimatorProperty>k__BackingField: {fileID: 3728124498502638004}
   <CharacterAnimatorProperty>k__BackingField: {fileID: 1743593304285973107}
   <TransitionManagerProperty>k__BackingField: {fileID: 0}
@@ -5813,9 +5810,10 @@ MonoBehaviour:
   <Abilities>k__BackingField:
     SprintUnlock: 0
     CanDestroyIceberg: 0
-  <ScriptDebug>k__BackingField: {fileID: 4416736119372952404}
   <PaddleLeft>k__BackingField: 0
   <PaddleRight>k__BackingField: 0
+  <RotateLeft>k__BackingField: 0
+  <RotateRight>k__BackingField: 0
   Data: {fileID: 11400000, guid: 9383b9325ce5e464e84beb6010a91e0a, type: 2}
   BaseOrientation: 90
   SplashLeft: {fileID: 2271665558123148317}
@@ -5878,19 +5876,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <KayakTransform>k__BackingField: {fileID: 5010205659145823894}
---- !u!114 &4416736119372952404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8493843328887140995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d756e6adb29ada46ac71d0199efdf8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _fadeDead: {fileID: 0}
 --- !u!114 &486807158916732135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7610,7 +7595,7 @@ PrefabInstance:
     - target: {fileID: 6072580230279934725, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6661863823823147375, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
