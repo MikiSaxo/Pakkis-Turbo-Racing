@@ -11,7 +11,7 @@ namespace Character.Camera.State
         public override void EnterState(CameraManager camera)
         {
             CamManager.CameraAnimator.Play("StartGame");
-            CamManager.ShakeCameraWarning(0);
+            // CamManager.ShakeCameraWarning(0);
             
             CharacterManager.Instance.CharacterAnimatorProperty.SetBool("Sleep",true);
             CharacterManager.Instance.PaddleAnimatorProperty.SetBool("Sleep",true);

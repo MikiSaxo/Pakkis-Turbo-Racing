@@ -20,8 +20,8 @@ namespace Character.Camera
         [field: SerializeField] public Rigidbody RigidbodyKayak { get; private set; }
         [field: SerializeField, Header("Virtual Camera")] public CinemachineBrain Brain { get; private set; }
         [field: SerializeField] public CinemachineVirtualCamera VirtualCameraFreeLook { get; private set; }
-        [field: SerializeField] public CinemachineVirtualCamera VirtualCameraCombat { get; private set; }
-        [field: SerializeField] public CinemachineVirtualCamera VirtualCameraLookAt { get; private set; }
+        // [field: SerializeField] public CinemachineVirtualCamera VirtualCameraCombat { get; private set; }
+        // [field: SerializeField] public CinemachineVirtualCamera VirtualCameraLookAt { get; private set; }
         [field: SerializeField] public Waves Waves { get; private set; }
         [field: SerializeField] public NoiseSettings MyNoiseProfileWhenNavigating { get; private set; }
         [field: SerializeField] public NoiseSettings MyNoiseProfileWarning { get; private set; }
@@ -60,9 +60,6 @@ namespace Character.Camera
         {
             CameraStartGameState startGameState = new CameraStartGameState();
             CurrentStateBase = startGameState;
-
-            CinemachineCombat3RdPersonFollow = VirtualCameraCombat.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-            CombatBaseShoulderOffset = CinemachineCombat3RdPersonFollow.ShoulderOffset;
         }
 
         private void Start()
@@ -114,8 +111,8 @@ namespace Character.Camera
         {
             float velocityXZ = Mathf.Abs(RigidbodyKayak.velocity.x) + Mathf.Abs(RigidbodyKayak.velocity.z);
 
-            var Dist = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance;
-            virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = Mathf.Lerp(Dist, Data.BaseDistance - (velocityXZ * Data.MultiplierCameraGettingCloser), Data.LerpCameraGettingCloser);
+            // var Dist = virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance;
+            // virtualCamera.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = Mathf.Lerp(Dist, Data.BaseDistance - (velocityXZ * Data.MultiplierCameraGettingCloser), Data.LerpCameraGettingCloser);
         }
         public void CameraDistanceFreeLook(CinemachineVirtualCamera virtualCamera)
         {
@@ -180,7 +177,7 @@ namespace Character.Camera
 
         public void ResetNavigationValue()
         {
-            VirtualCameraFreeLook.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = Data.BaseDistance;
+            // VirtualCameraFreeLook.GetCinemachineComponent<Cinemachine3rdPersonFollow>().CameraDistance = Data.BaseDistance;
             StartDeath = false;
         }
         public void SmoothResetDistanceValue()
@@ -236,75 +233,75 @@ namespace Character.Camera
             }
         }
 
-        public void ShakeCameraWarning(float intensity)
-        {
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = VirtualCameraFreeLook.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            cinemachineBasicMultiChannelPerlin.m_NoiseProfile = MyNoiseProfileWarning;
-            cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-        }
-        public void ShakeCameraNavigating(float intensity)
-        {
-            CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = VirtualCameraFreeLook.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
-            if (cinemachineBasicMultiChannelPerlin.m_NoiseProfile != MyNoiseProfileWhenNavigating)
-            {
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
-                cinemachineBasicMultiChannelPerlin.m_NoiseProfile = MyNoiseProfileWhenNavigating;
-            }
-            intensity = Mathf.Clamp(intensity, 0.5f, 1f);
-            if (cinemachineBasicMultiChannelPerlin.m_AmplitudeGain < intensity)
-            {
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain += Time.deltaTime;
-            }
-            else
-            {
-                cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
-            }
-        }
-
-        public void ResetCameraLocalPos()
-        {
-            Vector3 localPos = CinemachineCameraTarget.transform.localPosition;
-            localPos.x = CameraTargetBasePos.x;
-            localPos.y = CameraTargetBasePos.y;
-            localPos.z = CameraTargetBasePos.z;
-            CinemachineCameraTarget.transform.localPosition = localPos;
-        }
-
-        public void ResetCameraBehindBoat()
-        {
-            Quaternion localRotation = CinemachineCameraTarget.transform.localRotation;
-            Vector3 cameraTargetLocalPosition = CinemachineCameraTarget.transform.localPosition;
-
-            CinemachineCameraTarget.transform.localRotation = Quaternion.Slerp(localRotation, Quaternion.Euler(new Vector3(Data.BaseRotation.x, 0, localRotation.z)), 1f);
-            cameraTargetLocalPosition.x = Mathf.Lerp(cameraTargetLocalPosition.x, 0, Data.LerpPositionNotMoving);
-            CinemachineTargetEulerAnglesToRotation(cameraTargetLocalPosition);
-        }
-        #endregion
-        public void InitializeCams(Transform transform)
-        {
-            //Transform kayakTransform = CharacterManager.KayakControllerProperty.transform;
-            Transform stateDrivenCam = CameraAnimator.gameObject.transform;
-            Cinemachine3rdPersonFollow cinemachine3rdPerson = VirtualCameraFreeLook.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
-
-            stateDrivenCam.position = transform.position;
-            stateDrivenCam.eulerAngles = transform.eulerAngles;
-
-            CinemachineCameraFollowCombat.transform.localPosition = Data.CombatPosition;
-            CinemachineCameraTarget.transform.localPosition = Data.BasePosition;
-
-            Vector3 targetAngles = CinemachineCameraTarget.transform.localEulerAngles;
-            targetAngles.x = Data.BaseRotation.x;
-            targetAngles.y = Data.BaseRotation.y + transform.eulerAngles.y;
-            targetAngles.z = Data.BaseRotation.z;
-            CinemachineCameraTarget.transform.localEulerAngles = targetAngles;
-
-            cinemachine3rdPerson.CameraDistance = Data.BaseDistance;
-            cinemachine3rdPerson.ShoulderOffset = Vector3.zero;
-
-            CinemachineTargetPitch = Data.BaseRotation.x;
-            CinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
-            CameraTargetBasePos = CinemachineCameraTarget.transform.localPosition;
-        }
+        // public void ShakeCameraWarning(float intensity)
+        // {
+        //     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = VirtualCameraFreeLook.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //     cinemachineBasicMultiChannelPerlin.m_NoiseProfile = MyNoiseProfileWarning;
+        //     cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        // }
+        // public void ShakeCameraNavigating(float intensity)
+        // {
+        //     CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlin = VirtualCameraFreeLook.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //     if (cinemachineBasicMultiChannelPerlin.m_NoiseProfile != MyNoiseProfileWhenNavigating)
+        //     {
+        //         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = 0;
+        //         cinemachineBasicMultiChannelPerlin.m_NoiseProfile = MyNoiseProfileWhenNavigating;
+        //     }
+        //     intensity = Mathf.Clamp(intensity, 0.5f, 1f);
+        //     if (cinemachineBasicMultiChannelPerlin.m_AmplitudeGain < intensity)
+        //     {
+        //         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain += Time.deltaTime;
+        //     }
+        //     else
+        //     {
+        //         cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = intensity;
+        //     }
+        // }
+        //
+        // public void ResetCameraLocalPos()
+        // {
+        //     Vector3 localPos = CinemachineCameraTarget.transform.localPosition;
+        //     localPos.x = CameraTargetBasePos.x;
+        //     localPos.y = CameraTargetBasePos.y;
+        //     localPos.z = CameraTargetBasePos.z;
+        //     CinemachineCameraTarget.transform.localPosition = localPos;
+        // }
+        //
+        // public void ResetCameraBehindBoat()
+        // {
+        //     Quaternion localRotation = CinemachineCameraTarget.transform.localRotation;
+        //     Vector3 cameraTargetLocalPosition = CinemachineCameraTarget.transform.localPosition;
+        //
+        //     CinemachineCameraTarget.transform.localRotation = Quaternion.Slerp(localRotation, Quaternion.Euler(new Vector3(Data.BaseRotation.x, 0, localRotation.z)), 1f);
+        //     cameraTargetLocalPosition.x = Mathf.Lerp(cameraTargetLocalPosition.x, 0, Data.LerpPositionNotMoving);
+        //     CinemachineTargetEulerAnglesToRotation(cameraTargetLocalPosition);
+        // }
+         #endregion
+        // public void InitializeCams(Transform transform)
+        // {
+        //     //Transform kayakTransform = CharacterManager.KayakControllerProperty.transform;
+        //     Transform stateDrivenCam = CameraAnimator.gameObject.transform;
+        //     Cinemachine3rdPersonFollow cinemachine3rdPerson = VirtualCameraFreeLook.GetCinemachineComponent<Cinemachine3rdPersonFollow>();
+        //
+        //     stateDrivenCam.position = transform.position;
+        //     stateDrivenCam.eulerAngles = transform.eulerAngles;
+        //
+        //     CinemachineCameraFollowCombat.transform.localPosition = Data.CombatPosition;
+        //     CinemachineCameraTarget.transform.localPosition = Data.BasePosition;
+        //
+        //     Vector3 targetAngles = CinemachineCameraTarget.transform.localEulerAngles;
+        //     targetAngles.x = Data.BaseRotation.x;
+        //     targetAngles.y = Data.BaseRotation.y + transform.eulerAngles.y;
+        //     targetAngles.z = Data.BaseRotation.z;
+        //     CinemachineCameraTarget.transform.localEulerAngles = targetAngles;
+        //
+        //     cinemachine3rdPerson.CameraDistance = Data.BaseDistance;
+        //     cinemachine3rdPerson.ShoulderOffset = Vector3.zero;
+        //
+        //     CinemachineTargetPitch = Data.BaseRotation.x;
+        //     CinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+        //     CameraTargetBasePos = CinemachineCameraTarget.transform.localPosition;
+        // }
 
         public IEnumerator LaunchEventStart()
         {

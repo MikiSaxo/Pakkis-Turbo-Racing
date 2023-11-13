@@ -5,7 +5,7 @@ namespace Character.Camera.State
         public override void EnterState(CameraManager camera)
         {
             //look-at
-            CamManager.VirtualCameraCombat.LookAt = null;
+            // CamManager.VirtualCameraCombat.LookAt = null;
         }
         public override void UpdateState(CameraManager camera)
         {

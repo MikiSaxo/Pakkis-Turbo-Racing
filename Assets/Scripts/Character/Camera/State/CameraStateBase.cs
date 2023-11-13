@@ -123,8 +123,8 @@ namespace Character.Camera.State
                 return;
             }
 
-            Vector3 currentOffset = Vector3.Lerp(CamManager.CinemachineCombat3RdPersonFollow.ShoulderOffset, CamManager.CombatBaseShoulderOffset, 0.01f);
-            CamManager.CinemachineCombat3RdPersonFollow.ShoulderOffset = currentOffset;
+            // Vector3 currentOffset = Vector3.Lerp(CamManager.CinemachineCombat3RdPersonFollow.ShoulderOffset, CamManager.CombatBaseShoulderOffset, 0.01f);
+            // CamManager.CinemachineCombat3RdPersonFollow.ShoulderOffset = currentOffset;
         }
     }
 }

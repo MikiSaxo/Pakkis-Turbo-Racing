@@ -19,7 +19,7 @@ namespace Character.Camera.State
             CamManager.CameraAnimator.Play("FreeLook");
             CamManager.Brain.m_BlendUpdateMethod = CinemachineBrain.BrainUpdateMethod.LateUpdate;
 
-            CamManager.ShakeCameraNavigating(0);
+            // CamManager.ShakeCameraNavigating(0);
             CamManager.ResetNavigationValue();
         }
         public override void UpdateState(CameraManager camera)
@@ -43,23 +43,23 @@ namespace Character.Camera.State
 
             if (CamManager.Waves.CircularWavesDurationList.Count > 0)
             {
-                CamManager.ShakeCameraWarning(CamManager.Data.AmplitudeShakeWhenWaterWave);
+                // CamManager.ShakeCameraWarning(CamManager.Data.AmplitudeShakeWhenWaterWave);
             }
             else if (CamManager.WaterFlow == true)
             {
-                CamManager.ShakeCameraWarning(CamManager.Data.AmplitudeShakeWhenWaterFlow);
+               // CamManager.ShakeCameraWarning(CamManager.Data.AmplitudeShakeWhenWaterFlow);
             }
             else
             {
-                var velocity = Mathf.Abs(CamManager.RigidbodyKayak.velocity.x) + Mathf.Abs(CamManager.RigidbodyKayak.velocity.z);
-                if (velocity > 1)
-                {
-                    CamManager.ShakeCameraNavigating(CamManager.Data.AmplitudeShakeMinimumWhenNavigating + Mathf.Clamp(velocity, 0, 20) / CamManager.Data.DivideVelocityPlayer);
-                }
-                else
-                {
-                    CamManager.ShakeCameraNavigating(CamManager.Data.AmplitudeShakeMinimumWhenNavigating);
-                }
+                // var velocity = Mathf.Abs(CamManager.RigidbodyKayak.velocity.x) + Mathf.Abs(CamManager.RigidbodyKayak.velocity.z);
+                // if (velocity > 1)
+                // {
+                //     CamManager.ShakeCameraNavigating(CamManager.Data.AmplitudeShakeMinimumWhenNavigating + Mathf.Clamp(velocity, 0, 20) / CamManager.Data.DivideVelocityPlayer);
+                // }
+                // else
+                // {
+                //     CamManager.ShakeCameraNavigating(CamManager.Data.AmplitudeShakeMinimumWhenNavigating);
+                // }
             }
         }
         public override void FixedUpdate(CameraManager camera)

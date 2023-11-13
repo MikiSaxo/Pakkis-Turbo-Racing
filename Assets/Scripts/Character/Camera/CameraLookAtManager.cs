@@ -15,7 +15,7 @@ public class CameraLookAtManager : MonoBehaviour
         {
             return;
         }
-        CharacterManager.Instance.CameraManagerProperty.VirtualCameraLookAt.LookAt = transform;
+        // CharacterManager.Instance.CameraManagerProperty.VirtualCameraLookAt.LookAt = transform;
         StartCoroutine(StartLookAt(_startLookAt, _endLookAt));
     }
 

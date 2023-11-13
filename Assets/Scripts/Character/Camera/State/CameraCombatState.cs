@@ -53,7 +53,7 @@ namespace Character.Camera.State
                 _max -= 360;
             }
 
-            _baseFov = CamManager.VirtualCameraCombat.m_Lens.FieldOfView;
+            // _baseFov = CamManager.VirtualCameraCombat.m_Lens.FieldOfView;
             _currentFov = _baseFov;
 
             if (camera.CinemachineTargetYaw > 180 && _max < 180 && _min < 0)
@@ -65,7 +65,7 @@ namespace Character.Camera.State
                 camera.CinemachineTargetYaw += 360;
             }
 
-            _cameraNoise = CamManager.VirtualCameraCombat.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+            // _cameraNoise = CamManager.VirtualCameraCombat.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
             _cameraNoise.m_AmplitudeGain = CharacterManager.Instance.CurrentProjectile.Data.CameraBaseShakeAmount;
 
             CombatSensitivityMultiplier = CamManager.Data.CameraCombatSensibility;
@@ -100,7 +100,7 @@ namespace Character.Camera.State
                 _targetFOV = CamManager.Data.CombatFov;
                 FreeAimMultiplier = 1f;
             }
-            CamManager.CurrentStateBase.SetFOV(CamManager.VirtualCameraCombat, _currentFov);
+            // CamManager.CurrentStateBase.SetFOV(CamManager.VirtualCameraCombat, _currentFov);
             _currentFov = Mathf.Lerp(_currentFov, _targetFOV, fovLerp);
 
             //offset

@@ -8,7 +8,7 @@ namespace Character.Camera.State
 
         public override void EnterState(CameraManager camera)
         {
-            CamManager.ShakeCameraWarning(0);
+            // CamManager.ShakeCameraWarning(0);
             CamManager.CameraAngleOverride = 0;
         }
         public override void UpdateState(CameraManager camera)

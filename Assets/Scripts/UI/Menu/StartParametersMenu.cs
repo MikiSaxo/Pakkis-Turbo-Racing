@@ -134,7 +134,8 @@ namespace UI.Menu
         {
             IsActive = false;
 
-            _video.Play();
+            //_video.Play();
+            CheckVideoOver(_video);
             foreach (var item in _objectsList)
             {
                 item.IsSelected = false;

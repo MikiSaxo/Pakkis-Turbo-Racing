@@ -128,7 +128,7 @@ namespace Character
             Transform kayakTransform = KayakControllerProperty.transform;
             kayakTransform.eulerAngles = new Vector3(0, BaseOrientation, 0);
 
-            CameraManagerProperty.InitializeCams(kayakTransform);
+            //CameraManagerProperty.InitializeCams(kayakTransform);
         }
         
         private void Update()
@@ -282,8 +282,8 @@ namespace Character
             {
                 Gizmos.color = gizmoColor;
 
-                Gizmos.DrawLine(CameraManagerProperty.VirtualCameraCombat.transform.position, hit.point);
-                Gizmos.DrawSphere(hit.point, 1f);
+                // Gizmos.DrawLine(CameraManagerProperty.VirtualCameraCombat.transform.position, hit.point);
+                // Gizmos.DrawSphere(hit.point, 1f);
             }
 
             Transform camera = UnityEngine.Camera.main.transform;
