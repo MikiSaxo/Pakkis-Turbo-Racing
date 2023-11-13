@@ -1,0 +1,25 @@
+{
+    "DataList": [
+        {
+            "CategoryID": "",
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 181848
+            }
+        },
+        {
+            "CategoryID": "",
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 178530
+            }
+        },
+        {
+            "CategoryID": "",
+            "IsCollected": false,
+            "DialogCreatorGameObject": {
+                "instanceID": 179840
+            }
+        }
+    ]
+}

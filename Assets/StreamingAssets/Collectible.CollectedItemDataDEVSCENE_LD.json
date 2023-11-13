@@ -1,0 +1,88 @@
+{
+    "DataList": [
+        {
+            "ItemName": "Chasseur devant sa proie",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 245596
+            }
+        },
+        {
+            "ItemName": "Statuette02",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 269098
+            }
+        },
+        {
+            "ItemName": "Statuette03",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 254328
+            }
+        },
+        {
+            "ItemName": "Bison laineux",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 259498
+            }
+        },
+        {
+            "ItemName": "Ours vigilant",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 261972
+            }
+        },
+        {
+            "ItemName": "Morse tranquille",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 265434
+            }
+        },
+        {
+            "ItemName": "Statuette07",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 251090
+            }
+        },
+        {
+            "ItemName": "Statuette08",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 243724
+            }
+        },
+        {
+            "ItemName": "Phoque au repos",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 257486
+            }
+        },
+        {
+            "ItemName": "Baleine bleue",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 256108
+            }
+        },
+        {
+            "ItemName": "Totem ancien",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 264494
+            }
+        },
+        {
+            "ItemName": "Totem ancien",
+            "IsCollected": false,
+            "CollectibleGameObject": {
+                "instanceID": 264176
+            }
+        }
+    ]
+}

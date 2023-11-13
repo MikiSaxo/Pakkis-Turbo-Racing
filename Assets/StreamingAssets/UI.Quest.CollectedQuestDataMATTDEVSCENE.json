@@ -1,0 +1,32 @@
+{
+    "DataList": [
+        {
+            "IsCollected": false,
+            "IsDone": false,
+            "QuestCreatorGameObject": {
+                "instanceID": 179248
+            }
+        },
+        {
+            "IsCollected": false,
+            "IsDone": false,
+            "QuestCreatorGameObject": {
+                "instanceID": 180830
+            }
+        },
+        {
+            "IsCollected": false,
+            "IsDone": false,
+            "QuestCreatorGameObject": {
+                "instanceID": 180100
+            }
+        },
+        {
+            "IsCollected": false,
+            "IsDone": false,
+            "QuestCreatorGameObject": {
+                "instanceID": 180444
+            }
+        }
+    ]
+}
