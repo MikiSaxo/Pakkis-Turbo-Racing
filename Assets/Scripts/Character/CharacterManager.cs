@@ -30,10 +30,8 @@ namespace Character
 
         [field: SerializeField] public CharacterStateBase CurrentStateBaseProperty { get; private set; }
         [field: SerializeField] public KayakController KayakControllerProperty { get; private set; }
-        [field: SerializeField] public InputManagement InputManagementProperty { get; private set; }
         [field: SerializeField] public Animator PaddleAnimatorProperty { get; private set; }
         [field: SerializeField] public Animator CharacterAnimatorProperty { get; private set; }
-        [field: SerializeField] public TransitionManager TransitionManagerProperty { get; private set; }
         [field: SerializeField] public MonoBehaviour CharacterMonoBehaviour { get; private set; }
         [field: SerializeField] public IKControl IKPlayerControl { get; private set; }
         [field: SerializeField] public PlayerParameters Parameters { get; set; }
@@ -54,15 +52,14 @@ namespace Character
         public ParticleSystem SplashLeft;
         public ParticleSystem SplashRight;
 
-        [Header("Events")] public UnityEvent StartGame;
         public UnityEvent OnPaddle;
         public UnityEvent OnEnterSprint;
         public UnityEvent OnStopSprint;
         
-        [HideInInspector] public bool IsGameLaunched;
-
+ 
+        
+        
         [ReadOnly] public bool SprintInProgress = false;
-        [ReadOnly] public bool InWaterFlow = false;
 
         public PlayerStatsMultipliers PlayerStats;
  
@@ -70,7 +67,6 @@ namespace Character
         {
             PlayerStats = new PlayerStatsMultipliers();
             
-            // base.Awake();
             Cursor.visible = false;
             CharacterMonoBehaviour = this;
         }
@@ -86,8 +82,6 @@ namespace Character
             //rotate kayak
             Transform kayakTransform = KayakControllerProperty.transform;
             kayakTransform.eulerAngles = new Vector3(0, BaseOrientation, 0);
-
-            //CameraManagerProperty.InitializeCams(kayakTransform);
         }
         
         private void Update()
@@ -120,7 +114,6 @@ namespace Character
         }
         public void OnRotaRight(InputAction.CallbackContext context)
         {
-            // RotateRight = context.ReadValue<bool>();
             RotateRight = context.action.triggered;
         }
         
@@ -129,13 +122,6 @@ namespace Character
             CurrentStateBaseProperty.FixedUpdate(this);
         }
         
-        public void SwitchState(CharacterStateBase stateBaseCharacter)
-        {
-            CurrentStateBaseProperty.ExitState(this);
-            CurrentStateBaseProperty = stateBaseCharacter;
-            stateBaseCharacter.EnterState(this);
-        }
-
         public void SendDebugMessage(string message)
         {
             Debug.Log(message);

@@ -70,13 +70,13 @@ namespace Character.State
         }
         protected void VelocityToward()
         {
-            Vector3 oldVelocity = CharacterManagerRef.KayakControllerProperty.Rigidbody.velocity;
+            Vector3 oldVelocity = CharacterManagerRef.KayakControllerProperty.Rb.velocity;
             float oldVelocityMagnitude = new Vector2(oldVelocity.x, oldVelocity.z).magnitude;
             Vector3 forward = CharacterManagerRef.KayakControllerProperty.transform.forward;
             
             Vector2 newVelocity = oldVelocityMagnitude * new Vector2(forward.x,forward.z).normalized;
 
-            CharacterManagerRef.KayakControllerProperty.Rigidbody.velocity = new Vector3(newVelocity.x, oldVelocity.y, newVelocity.y);
+            CharacterManagerRef.KayakControllerProperty.Rb.velocity = new Vector3(newVelocity.x, oldVelocity.y, newVelocity.y);
         }
 
         public void LaunchNavigationState()

@@ -55,9 +55,8 @@ namespace Character.State
         {
             CharacterManagerRef = characterManager;
             _kayakController = CharacterManagerRef.KayakControllerProperty;
-            _kayakRigidbody = CharacterManagerRef.KayakControllerProperty.Rigidbody;
+            _kayakRigidbody = CharacterManagerRef.KayakControllerProperty.Rb;
             _kayakValues = CharacterManagerRef.KayakControllerProperty.Data.KayakValues;
-            _inputs = CharacterManagerRef.InputManagementProperty;
 
             _lastInputType = RotationType.Static;
         }

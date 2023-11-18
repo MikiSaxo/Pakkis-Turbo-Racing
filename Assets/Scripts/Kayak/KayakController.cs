@@ -18,7 +18,7 @@ namespace Kayak
     {
         public KayakData Data;
         
-        [field:SerializeField, Tooltip("Reference of the kayak rigidbody")] public Rigidbody Rigidbody { get; private set; }
+        [field:SerializeField, Tooltip("Reference of the kayak rigidbody")] public Rigidbody Rb { get; private set; }
         [ReadOnly, Tooltip("If this value is <= 0, the drag reducing will be activated")] public float DragReducingTimer;
         [ReadOnly, Tooltip("= is the drag reducing method activated ?")] public bool CanReduceDrag = true;
         [SerializeField, Tooltip("The floaters associated to the kayak's rigidbody")] public Floaters FloatersRef;
@@ -39,7 +39,7 @@ namespace Kayak
         
         private void Start()
         {
-            Rigidbody = GetComponent<Rigidbody>();
+            Rb = GetComponent<Rigidbody>();
         }
         private void Update()
         {
@@ -57,6 +57,12 @@ namespace Kayak
         {
             //CharacterManager characterManager = CharacterManager.Instance;
             float value = collision.relativeVelocity.magnitude / Data.KayakValues.CollisionToBalanceMagnitudeDivider;
+
+            if (collision.gameObject.GetComponent<Iceberg>() != null)
+            {
+                Rb.velocity = Vector3.zero;
+            }
+            
             //Debug.Log($"collision V.M. :{Math.Round(collision.relativeVelocity.magnitude)} -> {Math.Round(value,2)}");
             // characterManager.AddBalanceValueToCurrentSide(value);
             OnKayakCollision.Invoke();
@@ -67,7 +73,7 @@ namespace Kayak
         /// </summary>
         private void ClampVelocity()
         {
-            Vector3 velocity = Rigidbody.velocity;
+            Vector3 velocity = Rb.velocity;
             KayakParameters kayakValues = Data.KayakValues;
 
             float velocityX = velocity.x;
@@ -82,7 +88,7 @@ namespace Kayak
             float velocityZ = velocity.z;
             velocityZ = Mathf.Clamp(velocityZ, -maxClamp, maxClamp);
 
-            Rigidbody.velocity = new Vector3(velocityX, velocity.y, velocityZ);
+            Rb.velocity = new Vector3(velocityX, velocity.y, velocityZ);
         }
 
         /// <summary>
@@ -95,14 +101,13 @@ namespace Kayak
                 DragReducingTimer -= Time.deltaTime;
                 return;
             }
-            
-            Vector3 velocity = Rigidbody.velocity;
+            Vector3 velocity = Rb.velocity;
             float absX = Mathf.Abs(velocity.x);
             float absZ = Mathf.Abs(velocity.z);
 
             if (absX + absZ > 1)
             {
-                Rigidbody.velocity = new Vector3(
+                Rb.velocity = new Vector3(
                     velocity.x * Data.DragReducingMultiplier * Time.deltaTime, 
                       velocity.y, 
                     velocity.z * Data.DragReducingMultiplier * Time.deltaTime);
@@ -145,7 +150,7 @@ namespace Kayak
         private void ManageHighSpeedEvent()
         {
             _speedEventCountDown -= Time.deltaTime;
-            if (_speedEventCountDown > 0 || Rigidbody.velocity.magnitude < _magnitudeToLaunchEventSpeed)
+            if (_speedEventCountDown > 0 || Rb.velocity.magnitude < _magnitudeToLaunchEventSpeed)
             {
                 return;
             }

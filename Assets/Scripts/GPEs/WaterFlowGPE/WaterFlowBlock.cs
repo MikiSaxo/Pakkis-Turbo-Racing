@@ -11,8 +11,8 @@ namespace GPEs.WaterFlowGPE
     public class WaterFlowBlock : MonoBehaviour
     {
         //TODO to scriptable object
-        [Header("Parameters"), SerializeField]
-        private float _speed;
+        [Header("Parameters")]//, SerializeField]
+        // private float _speed;
 
         [SerializeField, Range(0, 1), Tooltip("Max balance value added to kayak while in water flow")]
         private float _balanceValue;
@@ -20,17 +20,17 @@ namespace GPEs.WaterFlowGPE
         [SerializeField, Tooltip("The range in-between which the balance value will be multiplied randomly")]
         private Vector2 _balanceValueRandomMultiplierRange;
 
-        [SerializeField, Range(0, 1), Tooltip("Multiplier applied to the speed when the boat isn't facing the direction")]
-        private float _speedNotFacingMultiplier = 0.5f;
-
-        [SerializeField, Range(0, 0.1f), Tooltip("The lerp applied to the boat rotation to match the flow direction when the boat is already facing the flow direction")]
-        private float _rotationLerpWhenInDirection = 0.05f;
-
-        [SerializeField, Range(0, 0.05f), Tooltip("The lerp applied to the boat rotation to match the flow direction when the boat is not facing the flow direction")]
-        private float _rotationLerpWhenNotInDirection = 0.005f;
-
-        [SerializeField, Range(0, 0.05f), Tooltip("The lerp applied to the boat rotation to match the flow direction when the player is trying to move away")]
-        private float _rotationLerpWhenMoving = 0.005f;
+        // [SerializeField, Range(0, 1), Tooltip("Multiplier applied to the speed when the boat isn't facing the direction")]
+        // private float _speedNotFacingMultiplier = 0.5f;
+        //
+        // [SerializeField, Range(0, 0.1f), Tooltip("The lerp applied to the boat rotation to match the flow direction when the boat is already facing the flow direction")]
+        // private float _rotationLerpWhenInDirection = 0.05f;
+        //
+        // [SerializeField, Range(0, 0.05f), Tooltip("The lerp applied to the boat rotation to match the flow direction when the boat is not facing the flow direction")]
+        // private float _rotationLerpWhenNotInDirection = 0.005f;
+        //
+        // [SerializeField, Range(0, 0.05f), Tooltip("The lerp applied to the boat rotation to match the flow direction when the player is trying to move away")]
+        // private float _rotationLerpWhenMoving = 0.005f;
 
         [Header("Particles"), SerializeField]
         private List<ParticleSystem> _particlesList;
@@ -101,11 +101,11 @@ namespace GPEs.WaterFlowGPE
             // Quaternion currentRotation = kayakController.transform.rotation;
             // Vector3 currentRotationEuler = currentRotation.eulerAngles;
             //get target rotation
-            float targetYAngle = Quaternion.LookRotation(Direction).eulerAngles.y;
+            // float targetYAngle = Quaternion.LookRotation(Direction).eulerAngles.y;
             // Quaternion targetRotation = Quaternion.Euler(currentRotationEuler.x, targetYAngle, currentRotationEuler.z);
 
             //check if the boat is facing the flow direction or not
-            const float ANGLE_TO_FACE_FLOW = 20f;
+            // const float ANGLE_TO_FACE_FLOW = 20f;
             // float angleDifference = Mathf.Abs(Mathf.Abs(currentRotationEuler.y) - Mathf.Abs(targetYAngle));
             // bool isFacingFlow = angleDifference <= ANGLE_TO_FACE_FLOW;
 
@@ -128,7 +128,7 @@ namespace GPEs.WaterFlowGPE
             //     velocity.z + speed * Mathf.Sign(velocity.z));
                     
             //balance
-            double value = _balanceValue * UnityEngine.Random.Range(_balanceValueRandomMultiplierRange.x, _balanceValueRandomMultiplierRange.y);
+            // double value = _balanceValue * UnityEngine.Random.Range(_balanceValueRandomMultiplierRange.x, _balanceValueRandomMultiplierRange.y);
             // CharacterManager.Instance.AddBalanceValueToCurrentSide(value);
         }
 
