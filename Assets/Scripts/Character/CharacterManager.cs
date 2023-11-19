@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Art.Script;
 using Character.Data.Character;
 using Character.State;
@@ -55,12 +56,14 @@ namespace Character
         public UnityEvent OnPaddle;
         public UnityEvent OnEnterSprint;
         public UnityEvent OnStopSprint;
-        
- 
+
+        private Vector3 _startPos;
         
         
         [ReadOnly] public bool SprintInProgress = false;
 
+        public bool CanGo { get; set; }
+        
         public PlayerStatsMultipliers PlayerStats;
  
         protected void Awake()
@@ -82,10 +85,31 @@ namespace Character
             //rotate kayak
             Transform kayakTransform = KayakControllerProperty.transform;
             kayakTransform.eulerAngles = new Vector3(0, BaseOrientation, 0);
+
+            _startPos = Manager.Instance.GetStartPos();
+            KayakControllerProperty.transform.position = _startPos;
+
+            // StartCoroutine(WaitToGoStartPos());
+            KayakControllerProperty.CanGo = true;
+            CanGo = true;
         }
+
+        IEnumerator WaitToGoStartPos()
+        {
+            yield return new WaitForSeconds(.5f);
+            KayakControllerProperty.transform.position = _startPos;
+           
+            yield return new WaitForSeconds(1f);
+            KayakControllerProperty.CanGo = true;
+            CanGo = true;
+        }
+        
         
         private void Update()
         {
+            if(!CanGo)
+                return;
+
             CurrentStateBaseProperty.UpdateState(this);
             
             //anim
@@ -119,6 +143,9 @@ namespace Character
         
         private void FixedUpdate()
         {
+            if(!CanGo)
+                return;
+            
             CurrentStateBaseProperty.FixedUpdate(this);
         }
         

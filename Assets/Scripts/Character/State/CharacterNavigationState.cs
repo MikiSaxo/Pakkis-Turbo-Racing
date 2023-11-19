@@ -82,9 +82,9 @@ namespace Character.State
 
         public override void UpdateState(CharacterManager character)
         {
-            PaddleCooldownManagement();
+           PaddleCooldownManagement();
 
-            MakeBoatRotationWithBalance(_kayakController.transform, 1);
+            //MakeBoatRotationWithBalance(_kayakController.transform, 1);
 
             if (_timerLastInputTrigger > _kayakValues.TimerMaxForSprint)
             {
@@ -101,7 +101,6 @@ namespace Character.State
                 StopCharacter();
                 return;
             }
-
             ManageKayakMovementInputs();
 
             KayakRotationManager(RotationType.Paddle);
@@ -167,7 +166,7 @@ namespace Character.State
         /// </summary>
         private void StopCharacter()
         {
-            _kayakRigidbody.velocity = Vector3.Lerp(_kayakRigidbody.velocity, Vector3.zero, 0.01f);
+            //_kayakRigidbody.velocity = Vector3.Lerp(_kayakRigidbody.velocity, Vector3.zero, 0.01f);
         }
 
         /// <summary>
