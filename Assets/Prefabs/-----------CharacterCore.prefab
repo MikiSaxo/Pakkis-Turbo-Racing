@@ -2294,6 +2294,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8448442312743378426}
     m_Modifications:
+    - target: {fileID: 333907970047417241, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 333907970047417243, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _renderDistance
@@ -2304,6 +2309,11 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 3165974726467816125}
+    - target: {fileID: 333907970277157174, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 333907970277157176, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _renderDistance
@@ -2314,6 +2324,11 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 3165974726467816125}
+    - target: {fileID: 333907970869196803, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 333907970869196805, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _renderDistance
@@ -2324,6 +2339,11 @@ PrefabInstance:
       propertyPath: _playerTransform
       value: 
       objectReference: {fileID: 3165974726467816125}
+    - target: {fileID: 333907971254692468, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 333907971254692470, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _renderDistance
@@ -2394,6 +2414,26 @@ PrefabInstance:
       propertyPath: m_Drag
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 333907971529626019, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 333907971529626019, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 333907971529626019, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 84
+      objectReference: {fileID: 0}
+    - target: {fileID: 333907971529626019, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 333907971529626045, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: m_Name
@@ -2406,10 +2446,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4595948853936165718, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4595948853936165718, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: 10cabda54b72f504bbbd59600f2d1285,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: LeftPaddleParticle
