@@ -8,10 +8,14 @@ public class IcebergBreaking : MonoBehaviour
     
     [Header("References"),SerializeField] GameObject _normalObject;
     [SerializeField] GameObject _breakingObject;
+    [SerializeField] GameObject _fbFragile;
+
+    [Header("Variables"), SerializeField] int _breakingCollisionNumber;
 
     [Header("VFX"), SerializeField] ParticleSystem _hitParticles;
 
     private bool _startLifeTimer = false;
+    private int _currentCollisionNumber = 0;
 
     void Start()
     {
@@ -30,6 +34,11 @@ public class IcebergBreaking : MonoBehaviour
         {
             Destroy(this.gameObject, 3.0f);
         }
+
+        if(_currentCollisionNumber >= _breakingCollisionNumber )
+        {
+            DestroyIceberg();
+        }
     }
    
     public void DestroyIceberg()
@@ -45,5 +54,16 @@ public class IcebergBreaking : MonoBehaviour
         }
     }
 
+    public void IncreaseCollisionNumber()
+    {
+        _currentCollisionNumber++;
+    }
 
+    public void FB_icebergFragile()
+    {
+        if(_currentCollisionNumber == 1)
+        {
+            _fbFragile.SetActive(true);
+        }
+    }
 }
