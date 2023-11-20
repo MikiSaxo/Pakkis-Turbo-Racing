@@ -165,11 +165,10 @@ MonoBehaviour:
   _UVScale: 2
   _waterPlacing: {fileID: 2039563050001707507}
   _renderDistance: 20
-  _playerTransform: {fileID: 0}
   _octave:
-    Speed: {x: 20, y: 20}
-    Scale: {x: 20, y: 20}
-    Height: 1
+    Speed: {x: 0, y: 0}
+    Scale: {x: 0, y: 0}
+    Height: 0
   _waveParticlePool: {fileID: 8082000473755422881}
 --- !u!1 &7000026621823697764
 GameObject:
