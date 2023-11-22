@@ -157,7 +157,6 @@ namespace Character
 
         public void ResetPos()
         {
-            print("reset pos");
             KayakControllerProperty.transform.position = _startPos;
         }
 

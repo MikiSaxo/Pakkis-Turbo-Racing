@@ -118,7 +118,6 @@ namespace Kayak
                 return;
             }
 
-            print("allo");
             Vector3 velocity = Rb.velocity;
             float absX = Mathf.Abs(velocity.x);
             float absZ = Mathf.Abs(velocity.z);
@@ -130,7 +129,6 @@ namespace Kayak
                     velocity.y,
                     velocity.z * Data.DragReducingMultiplier * Time.deltaTime);
             }
-            print(Data.DragReducingMultiplier);
         }
 
         public void PlayPaddleParticle(CharacterNavigationState.Direction side)

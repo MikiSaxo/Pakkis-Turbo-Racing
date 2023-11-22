@@ -10,6 +10,7 @@ using UnityEngine;
 public class Manager : Singleton<Manager>
 {
     [field:SerializeField] public int CurrentPlayerNumbers { get; set; }
+    public bool IsGameStarted { get; set; }
     
      public List<UIPlayer> UIPlayers = new List<UIPlayer>();
      public List<CharacterManager> Players = new List<CharacterManager>();
@@ -136,6 +137,7 @@ public class Manager : Singleton<Manager>
             player.ResetPos();
         }
         _canLaunchGame = false;
+        IsGameStarted = true;
         Reset();
         _raceCam.SetActive(true);
     }
