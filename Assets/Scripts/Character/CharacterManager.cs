@@ -20,14 +20,14 @@ namespace Character
         public float BreakingDistanceMultiplier = 1;
         public float MaximumSpeedMultiplier = 1;
         public float RotationSpeedMultiplier = 1;
-        
+
         public float ChargeTimeReducingMultiplier = 1;
         public float ExperienceGainMultiplier = 1;
     }
-    
+
     public class CharacterManager : MonoBehaviour
     {
-        #region Properties
+       #region Properties
 
         [field: SerializeField] public CharacterStateBase CurrentStateBaseProperty { get; private set; }
         [field: SerializeField] public KayakController KayakControllerProperty { get; private set; }
@@ -37,8 +37,9 @@ namespace Character
         [field: SerializeField] public IKControl IKPlayerControl { get; private set; }
         [field: SerializeField] public PlayerParameters Parameters { get; set; }
         [field: SerializeField] public PlayerAbilities Abilities { get; set; }
-        
-        
+
+
+        [field: SerializeField] public bool Click { get; private set; }
         [field: SerializeField] public bool PaddleLeft { get; private set; }
         [field: SerializeField] public bool PaddleRight { get; private set; }
         [field: SerializeField] public bool RotateLeft { get; private set; }
@@ -46,11 +47,14 @@ namespace Character
 
         #endregion
 
-        [Header("Character Data")]
-        public CharacterData Data;
+        [Header("------------------- New")][SerializeField] private bool _isTesting;
+        [SerializeField] private UIPlayer _uiPlayer;
+        [Header("-------------------")]
+        [Space(20f)]
+        
+        [Header("Character Data")] public CharacterData Data;
         [Range(0, 360)] public float BaseOrientation;
-        [Header("VFX")]
-        public ParticleSystem SplashLeft;
+        [Header("VFX")] public ParticleSystem SplashLeft;
         public ParticleSystem SplashRight;
 
         public UnityEvent OnPaddle;
@@ -58,18 +62,19 @@ namespace Character
         public UnityEvent OnStopSprint;
 
         private Vector3 _startPos;
-        
-        
+        private bool _isReady;
+
+
         [ReadOnly] public bool SprintInProgress = false;
 
         public bool CanGo { get; set; }
-        
+
         public PlayerStatsMultipliers PlayerStats;
- 
+
         protected void Awake()
         {
             PlayerStats = new PlayerStatsMultipliers();
-            
+
             Cursor.visible = false;
             CharacterMonoBehaviour = this;
         }
@@ -87,68 +92,77 @@ namespace Character
             kayakTransform.eulerAngles = new Vector3(0, BaseOrientation, 0);
 
             _startPos = Manager.Instance.GetStartPos();
+            Manager.Instance.UIPlayers.Add(_uiPlayer);
             KayakControllerProperty.transform.position = _startPos;
 
-            // StartCoroutine(WaitToGoStartPos());
-            KayakControllerProperty.CanGo = true;
-            CanGo = true;
+            if (_isTesting)
+            {
+                KayakControllerProperty.CanGo = true;
+                CanGo = true;
+            }
         }
 
-        IEnumerator WaitToGoStartPos()
-        {
-            yield return new WaitForSeconds(.5f);
-            KayakControllerProperty.transform.position = _startPos;
-           
-            yield return new WaitForSeconds(1f);
-            KayakControllerProperty.CanGo = true;
-            CanGo = true;
-        }
-        
-        
         private void Update()
         {
-            if(!CanGo)
+            if (!_isTesting)
+            {
+                KayakControllerProperty.transform.position = _startPos;
+
+                _uiPlayer.HasClicked = Click;
+            }
+
+            
+            if (!CanGo)
                 return;
 
+            // Update State
             CurrentStateBaseProperty.UpdateState(this);
-            
+
             //anim
             if (IKPlayerControl.CurrentType != IKType.Paddle || IKPlayerControl.Type == IKType.Paddle)
             {
                 return;
             }
+
             CurrentStateBaseProperty.TimeBeforeSettingPaddleAnimator -= Time.deltaTime;
             if (CurrentStateBaseProperty.TimeBeforeSettingPaddleAnimator <= 0)
             {
                 IKPlayerControl.SetPaddle();
             }
         }
-        
+
+        public void OnJoining(InputAction.CallbackContext context)
+        {
+            Click = context.action.triggered;
+        }
         public void OnPaddleLeft(InputAction.CallbackContext context)
         {
             PaddleLeft = context.action.triggered;
         }
+
         public void OnPaddleRight(InputAction.CallbackContext context)
         {
             PaddleRight = context.action.triggered;
         }
+
         public void OnRotaLeft(InputAction.CallbackContext context)
         {
             RotateLeft = context.action.triggered;
         }
+
         public void OnRotaRight(InputAction.CallbackContext context)
         {
             RotateRight = context.action.triggered;
         }
-        
+
         private void FixedUpdate()
         {
-            if(!CanGo)
+            if (!CanGo)
                 return;
-            
+
             CurrentStateBaseProperty.FixedUpdate(this);
         }
-        
+
         public void SendDebugMessage(string message)
         {
             Debug.Log(message);
@@ -160,6 +174,7 @@ namespace Character
     {
         public bool InversedControls;
     }
+
     [Serializable]
     public struct PlayerAbilities
     {
