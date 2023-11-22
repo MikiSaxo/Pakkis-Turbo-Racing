@@ -10,6 +10,8 @@ public class CamSpeed : MonoBehaviour
    [SerializeField] private CinemachineDollyCart _camCart;
    [SerializeField] private float _minSpeed = 3f;
    [SerializeField] private float _maxSpeed = 20f;
+   [SerializeField] private float _acceleration = 5f;
+   [SerializeField] private float _deceleration = 5f;
 
    private bool _hasKayak;
    private void OnTriggerEnter(Collider other)
@@ -38,12 +40,12 @@ public class CamSpeed : MonoBehaviour
       if (_hasKayak)
       {
          if(_camCart.m_Speed <= _maxSpeed)
-            _camCart.m_Speed += Time.deltaTime*5;
+            _camCart.m_Speed += Time.deltaTime * _acceleration;
       }
       else
       {
          if(_camCart.m_Speed >= _minSpeed)
-            _camCart.m_Speed -= Time.deltaTime;
+            _camCart.m_Speed -= Time.deltaTime * _deceleration;
       }
    }
 }
