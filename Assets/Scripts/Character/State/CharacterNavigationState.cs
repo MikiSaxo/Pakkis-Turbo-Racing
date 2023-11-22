@@ -29,7 +29,6 @@ namespace Character.State
         private float _staticInputTimer;
 
         //kayak
-        // private Vector2 _paddleForceValue;
         private float _leftPaddleCooldown, _rightPaddleCooldown;
         private Direction _lastPaddleSide;
 
@@ -38,7 +37,6 @@ namespace Character.State
         private KayakParameters _kayakValues;
 
         private Rigidbody _kayakRigidbody;
-        //private Floaters _floaters;
 
         //priority
         private RotationType _lastInputType;
@@ -82,9 +80,7 @@ namespace Character.State
 
         public override void UpdateState(CharacterManager character)
         {
-           PaddleCooldownManagement();
-
-            //MakeBoatRotationWithBalance(_kayakController.transform, 1);
+            PaddleCooldownManagement();
 
             if (_timerLastInputTrigger > _kayakValues.TimerMaxForSprint)
             {
@@ -101,14 +97,13 @@ namespace Character.State
                 StopCharacter();
                 return;
             }
+
             ManageKayakMovementInputs();
 
             KayakRotationManager(RotationType.Paddle);
             KayakRotationManager(RotationType.Static);
 
             VelocityToward();
-
-            CheckRigidbodyFloatersBalance();
         }
 
         public override void SwitchState(CharacterManager character)
@@ -117,7 +112,7 @@ namespace Character.State
 
         public override void ExitState(CharacterManager character)
         {
-            DisableSprint();
+            //DisableSprint();
         }
 
         #endregion
@@ -336,7 +331,6 @@ namespace Character.State
             //change the rotation inertia to 0
             RotationPaddleForceY = Mathf.Lerp(RotationPaddleForceY, 0, 0.1f);
             RotationStaticForceY = Mathf.Lerp(RotationStaticForceY, 0, 0.1f);
-            
         }
 
         private void CheckIfSprint(Direction direction)
@@ -409,7 +403,7 @@ namespace Character.State
             bool isFast = Mathf.Abs(_kayakRigidbody.velocity.x + _kayakRigidbody.velocity.z) >= 0.1f;
 
             //left
-            if (CharacterManagerRef.RotateLeft)// > _inputs.Inputs.Deadzone)
+            if (CharacterManagerRef.RotateLeft) // > _inputs.Inputs.Deadzone)
             {
                 if (isFast)
                 {
@@ -428,7 +422,7 @@ namespace Character.State
             }
 
             //right
-            if (CharacterManagerRef.RotateRight)// > _inputs.Inputs.Deadzone)
+            if (CharacterManagerRef.RotateRight) // > _inputs.Inputs.Deadzone)
             {
                 if (isFast)
                 {

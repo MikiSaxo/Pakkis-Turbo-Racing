@@ -3,6 +3,7 @@ using System.Collections;
 using Art.Script;
 using Character.Data.Character;
 using Character.State;
+using DG.Tweening;
 using GPEs.Checkpoint;
 using Kayak;
 using SceneTransition;
@@ -27,7 +28,7 @@ namespace Character
 
     public class CharacterManager : MonoBehaviour
     {
-       #region Properties
+        #region Properties
 
         [field: SerializeField] public CharacterStateBase CurrentStateBaseProperty { get; private set; }
         [field: SerializeField] public KayakController KayakControllerProperty { get; private set; }
@@ -47,12 +48,14 @@ namespace Character
 
         #endregion
 
-        [Header("------------------- New")][SerializeField] private bool _isTesting;
+        [Header("------------------- New")] [SerializeField]
+        private bool _isTesting;
+
         [SerializeField] private UIPlayer _uiPlayer;
-        [Header("-------------------")]
-        [Space(20f)]
-        
-        [Header("Character Data")] public CharacterData Data;
+
+        [Header("-------------------")] [Space(20f)] [Header("Character Data")]
+        public CharacterData Data;
+
         [Range(0, 360)] public float BaseOrientation;
         [Header("VFX")] public ParticleSystem SplashLeft;
         public ParticleSystem SplashRight;
@@ -68,6 +71,7 @@ namespace Character
         [ReadOnly] public bool SprintInProgress = false;
 
         public bool CanGo { get; set; }
+        public bool CanPaddle { get; set; }
 
         public PlayerStatsMultipliers PlayerStats;
 
@@ -93,48 +97,80 @@ namespace Character
 
             _startPos = Manager.Instance.GetStartPos();
             Manager.Instance.UIPlayers.Add(_uiPlayer);
-            KayakControllerProperty.transform.position = _startPos;
+            Manager.Instance.Players.Add(this);
+            
+            // CanPaddle = true;
 
             if (_isTesting)
             {
                 KayakControllerProperty.CanGo = true;
                 CanGo = true;
             }
+
+            ResetPos();
+            StartCoroutine(WaitToDecal());
         }
+
+        IEnumerator WaitToDecal()
+        {
+            yield return new WaitForSeconds(.5f);
+            ResetPos();
+        }
+
 
         private void Update()
         {
-            if (!_isTesting)
+            if (!CanGo && !_isTesting)
             {
-                KayakControllerProperty.transform.position = _startPos;
-
                 _uiPlayer.HasClicked = Click;
+                
+                transform.DORotate(Vector3.zero, 0);
+                KayakControllerProperty.transform.DORotate(Vector3.zero, 0);
             }
-
             
-            if (!CanGo)
+            if (!CanPaddle)
                 return;
 
             // Update State
             CurrentStateBaseProperty.UpdateState(this);
-
+            
             //anim
             if (IKPlayerControl.CurrentType != IKType.Paddle || IKPlayerControl.Type == IKType.Paddle)
             {
                 return;
             }
-
+            
             CurrentStateBaseProperty.TimeBeforeSettingPaddleAnimator -= Time.deltaTime;
             if (CurrentStateBaseProperty.TimeBeforeSettingPaddleAnimator <= 0)
             {
                 IKPlayerControl.SetPaddle();
             }
         }
+        
+        private void FixedUpdate()
+        {
+            if (!CanPaddle)
+                return;
 
+            CurrentStateBaseProperty.FixedUpdate(this);
+        }
+
+        public void ResetPos()
+        {
+            print("reset pos");
+            KayakControllerProperty.transform.position = _startPos;
+        }
+
+        public void SendDebugMessage(string message)
+        {
+            Debug.Log(message);
+        }
+        
         public void OnJoining(InputAction.CallbackContext context)
         {
             Click = context.action.triggered;
         }
+
         public void OnPaddleLeft(InputAction.CallbackContext context)
         {
             PaddleLeft = context.action.triggered;
@@ -154,20 +190,9 @@ namespace Character
         {
             RotateRight = context.action.triggered;
         }
-
-        private void FixedUpdate()
-        {
-            if (!CanGo)
-                return;
-
-            CurrentStateBaseProperty.FixedUpdate(this);
-        }
-
-        public void SendDebugMessage(string message)
-        {
-            Debug.Log(message);
-        }
     }
+    
+    
 
     [Serializable]
     public struct PlayerParameters

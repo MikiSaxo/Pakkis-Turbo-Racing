@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163cd6086d794bc8aeff3e105899c98d, type: 3}
   m_Name: Kayak
   m_EditorClassIdentifier: 
-  DragReducingMultiplier: 50.397
+  DragReducingMultiplier: 51
   KayakValues:
     MaximumFrontVelocity: 12
     MaximumFrontSprintVelocity: 25

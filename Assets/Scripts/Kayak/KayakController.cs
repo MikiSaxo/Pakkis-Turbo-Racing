@@ -56,8 +56,8 @@ namespace Kayak
                 return;
 
             ClampVelocity();
-            ManageParticlePaddle();
-            ManageHighSpeedEvent();
+            //ManageParticlePaddle();
+            // ManageHighSpeedEvent();
         }
 
         private void FixedUpdate()
@@ -71,16 +71,16 @@ namespace Kayak
         private void OnCollisionEnter(Collision collision)
         {
             //CharacterManager characterManager = CharacterManager.Instance;
-            float value = collision.relativeVelocity.magnitude / Data.KayakValues.CollisionToBalanceMagnitudeDivider;
-
-            if (collision.gameObject.GetComponent<Iceberg>() != null)
-            {
-                Rb.velocity = Vector3.zero;
-            }
+            // float value = collision.relativeVelocity.magnitude / Data.KayakValues.CollisionToBalanceMagnitudeDivider;
+            //
+            // if (collision.gameObject.GetComponent<Iceberg>() != null)
+            // {
+            //     Rb.velocity = Vector3.zero;
+            // }
 
             //Debug.Log($"collision V.M. :{Math.Round(collision.relativeVelocity.magnitude)} -> {Math.Round(value,2)}");
             // characterManager.AddBalanceValueToCurrentSide(value);
-            OnKayakCollision.Invoke();
+            //OnKayakCollision.Invoke();
         }
 
         /// <summary>
@@ -91,12 +91,13 @@ namespace Kayak
             Vector3 velocity = Rb.velocity;
             KayakParameters kayakValues = Data.KayakValues;
 
+            
+            
             float velocityX = velocity.x;
             // float maxClamp = CharacterManager.Instance.SprintInProgress ? 
             //     kayakValues.MaximumFrontSprintVelocity :
             //     kayakValues.MaximumFrontVelocity * CharacterManager.Instance.PlayerStats.MaximumSpeedMultiplier;
-            float maxClamp = kayakValues.MaximumFrontSprintVelocity;
-
+            float maxClamp = kayakValues.MaximumFrontVelocity;
 
             velocityX = Mathf.Clamp(velocityX, -maxClamp, maxClamp);
 
@@ -117,6 +118,7 @@ namespace Kayak
                 return;
             }
 
+            print("allo");
             Vector3 velocity = Rb.velocity;
             float absX = Mathf.Abs(velocity.x);
             float absZ = Mathf.Abs(velocity.z);
@@ -128,6 +130,7 @@ namespace Kayak
                     velocity.y,
                     velocity.z * Data.DragReducingMultiplier * Time.deltaTime);
             }
+            print(Data.DragReducingMultiplier);
         }
 
         public void PlayPaddleParticle(CharacterNavigationState.Direction side)

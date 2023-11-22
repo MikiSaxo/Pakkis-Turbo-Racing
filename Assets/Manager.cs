@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Character;
 using DG.Tweening;
 using TMPro;
 using Tools.SingletonClassBase;
@@ -11,6 +12,7 @@ public class Manager : Singleton<Manager>
     [field:SerializeField] public int CurrentPlayerNumbers { get; set; }
     
      public List<UIPlayer> UIPlayers = new List<UIPlayer>();
+     public List<CharacterManager> Players = new List<CharacterManager>();
 
     [SerializeField, Header("Parameters")] private Transform[] _startPos;
     [SerializeField] private GameObject _textCooldown;
@@ -30,6 +32,7 @@ public class Manager : Singleton<Manager>
     {
         _currentPosPlayer++;
         CurrentPlayerNumbers++;
+        CheckIfAllPlayersReady();
 
         if (_currentPosPlayer >= _startPos.Length)
             return Vector3.zero;
@@ -53,12 +56,23 @@ public class Manager : Singleton<Manager>
             print("can launch game");
             _canLaunchGame = true;
             _textCooldown.SetActive(true);
+            
+            foreach (var player in Players)
+            {
+                player.CanPaddle = false;
+            }
+            
             LaunchNumber();
         }
         else
         {
             if (_canLaunchGame)
                 _textCooldown.transform.DOKill();
+            
+            foreach (var player in Players)
+            {
+                player.CanPaddle = true;
+            }
             
             Reset();
         }
@@ -76,9 +90,10 @@ public class Manager : Singleton<Manager>
 
         if (_currentNumber == 0)
         {
-            _canLaunchGame = false;
-            Reset();
-            _raceCam.SetActive(true);
+            LaunchGame();
+            _textCooldown.GetComponent<TMP_Text>().color = Color.white;
+            _textCooldown.transform.DOKill();
+            return;
         }
         
         _textCooldown.transform.DORotate(new Vector3(0,0 ,0), 0);
@@ -101,15 +116,27 @@ public class Manager : Singleton<Manager>
         _textCooldown.transform.DORotate(new Vector3(0,0, -360), .3f, RotateMode.FastBeyond360).SetEase(Ease.OutSine);
         _textCooldown.transform.DOScale(Vector3.zero, .3f).SetEase(Ease.OutSine).OnComplete(LaunchNumber);
     }
-    // private void Update()
-    // {
-    //     if (!_canLaunchGame)
-    //     {
-    //         _currentCooldown = _cooldown;
-    //         return;
-    //     }
-    //
-    //     _currentCooldown -= Time.deltaTime;
-    // }
-    
+
+    private void LaunchGame()
+    {
+        print("launch game");
+        foreach (var uiPlayer in UIPlayers)
+        {
+            uiPlayer.GoGoGo();
+        }
+
+        foreach (var player in Players)
+        {
+            player.CanGo = true;
+            player.CanPaddle = true;
+
+            player.KayakControllerProperty.CanGo = true;
+            player.KayakControllerProperty.Rb.velocity = Vector3.zero;
+
+            player.ResetPos();
+        }
+        _canLaunchGame = false;
+        Reset();
+        _raceCam.SetActive(true);
+    }
 }
