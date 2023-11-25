@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163cd6086d794bc8aeff3e105899c98d, type: 3}
   m_Name: Kayak
   m_EditorClassIdentifier: 
-  DragReducingMultiplier: 51
+  DragReducingMultiplier: 50.389
   KayakValues:
     MaximumFrontVelocity: 12
     MaximumFrontSprintVelocity: 25
@@ -52,7 +52,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     StaticRotationForce: 0.1
-    StaticRotationDeceleration: 0.043
+    StaticRotationDeceleration: 0.063
     StaticRotationCooldownAfterPaddle: 0.11
     VelocityDecelerationLerp: 0.004
     VelocityDecelerationRotationForce: 0.01
