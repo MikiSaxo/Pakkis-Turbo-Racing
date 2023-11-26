@@ -12,6 +12,7 @@ public class Manager : Singleton<Manager>
 {
     [field: SerializeField] public int CurrentPlayerNumbers { get; set; }
     public bool IsGameStarted { get; set; }
+    public bool IsGameEnded { get; set; }
 
     [HideInInspector] public List<UIPlayer> UIPlayers = new List<UIPlayer>();
     [HideInInspector] public List<CharacterManager> Players = new List<CharacterManager>();
@@ -26,6 +27,7 @@ public class Manager : Singleton<Manager>
     [SerializeField] private Image _loadingsBG;
     [SerializeField] private Sprite[] _loadingsStepSprite;
     [SerializeField] private float _timeBetweenTwoScreen = 2f;
+    [SerializeField] private Image _bg;
 
     private bool _canLaunchGame;
     private int _currentPosPlayer;
@@ -106,11 +108,7 @@ public class Manager : Singleton<Manager>
             LaunchNumber();
             _loadingsScreen.SetActive(false);
             
-            foreach (var uiPlayer in UIPlayers)
-            {
-                // Deactivate Canvas of players
-                uiPlayer.GoGoGo();
-            }
+            
             
             return;
         }
@@ -127,6 +125,11 @@ public class Manager : Singleton<Manager>
     {
         _loadingsStep.DOFade(1, _timeBetweenTwoScreen * .5f).OnComplete(LoadingFadeOff);
         _raceCam.SetActive(true);
+        foreach (var uiPlayer in UIPlayers)
+        {
+            // Deactivate Canvas of players
+            uiPlayer.GoGoGo();
+        }
     }
 
     private void LoadingFadeOff()
@@ -183,7 +186,44 @@ public class Manager : Singleton<Manager>
         }
         _canLaunchGame = false;
         IsGameStarted = true;
+        foreach (var player in Players)
+        {
+            player.IsDead = false;
+        }
         ResetCooldownNumber();
         // _raceCam.SetActive(true);
+    }
+
+    public void CheckIfAllPlayerDead()
+    {
+        var count = 0;
+        ColorKayak color = ColorKayak.Blue;
+        
+        foreach (var player in Players)
+        {
+            if (player.IsDead)
+                count++;
+            else
+                color = player.KayakColor;
+        }
+
+        if (count >= Players.Count - 1)
+        {
+            EndGame(color);
+        }
+    }
+
+    private void EndGame(ColorKayak color)
+    {
+        IsGameStarted = false;
+        IsGameEnded = true;
+        PermanentColorWinner.Instance.KayakColor = color;
+        print($"fini {color} win");
+        _bg.DOFade(1, 3).OnComplete(ChangeSceneVictory);
+    }
+
+    private void ChangeSceneVictory()
+    {
+        
     }
 }

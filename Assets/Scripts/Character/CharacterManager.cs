@@ -66,14 +66,20 @@ namespace Character
 
         private Vector3 _startPos;
         private bool _isReady;
+        private float _cooldownResetPos;
 
 
         [ReadOnly] public bool SprintInProgress = false;
 
         public bool CanGo { get; set; }
         public bool CanPaddle { get; set; }
+        public bool IsDead { get; set; }
+
+        public ColorKayak KayakColor { get; set; }
 
         public PlayerStatsMultipliers PlayerStats;
+
+        private bool _hasInit;
 
         protected void Awake()
         {
@@ -91,6 +97,8 @@ namespace Character
 
             CurrentStateBaseProperty.EnterState(this);
 
+            int color = Manager.Instance.CurrentPlayerNumbers;
+            KayakColor = (ColorKayak)color;
             //rotate kayak
             Transform kayakTransform = KayakControllerProperty.transform;
             kayakTransform.eulerAngles = new Vector3(0, BaseOrientation, 0);
@@ -98,7 +106,7 @@ namespace Character
             _startPos = Manager.Instance.GetStartPos();
             Manager.Instance.UIPlayers.Add(_uiPlayer);
             Manager.Instance.Players.Add(this);
-            
+
             // CanPaddle = true;
 
             if (_isTesting)
@@ -115,40 +123,60 @@ namespace Character
         {
             yield return new WaitForSeconds(.5f);
             ResetPos();
+            _hasInit = true;
         }
 
 
         private void Update()
         {
+            if (IsDead || Manager.Instance.IsGameEnded)
+                return;
+
             if (!CanGo && !_isTesting)
             {
                 _uiPlayer.HasClicked = Click;
-                
+
                 transform.DORotate(Vector3.zero, 0);
                 KayakControllerProperty.transform.DORotate(Vector3.zero, 0);
             }
-            
+
+            // print(Vector3.Distance(KayakControllerProperty.transform.position, Vector3.zero));
+            // if (!Manager.Instance.IsGameStarted)
+            // {
+            //     _cooldownResetPos += Time.deltaTime;
+            //     
+            //     if (_hasInit && Vector3.Distance(KayakControllerProperty.transform.position, Vector3.zero) < 4f &&
+            //         _cooldownResetPos > .5f)
+            //     {
+            //         _cooldownResetPos = 0;
+            //         ResetPos();
+            //     }
+            // }
+
             if (!CanPaddle)
                 return;
 
             // Update State
             CurrentStateBaseProperty.UpdateState(this);
-            
+
             //anim
             if (IKPlayerControl.CurrentType != IKType.Paddle || IKPlayerControl.Type == IKType.Paddle)
             {
                 return;
             }
-            
+
             CurrentStateBaseProperty.TimeBeforeSettingPaddleAnimator -= Time.deltaTime;
             if (CurrentStateBaseProperty.TimeBeforeSettingPaddleAnimator <= 0)
             {
                 IKPlayerControl.SetPaddle();
             }
         }
-        
+
         private void FixedUpdate()
         {
+            if (IsDead || Manager.Instance.IsGameEnded)
+                return;
+
             if (!CanPaddle)
                 return;
 
@@ -164,7 +192,7 @@ namespace Character
         {
             Debug.Log(message);
         }
-        
+
         public void OnJoining(InputAction.CallbackContext context)
         {
             Click = context.action.triggered;
@@ -190,8 +218,7 @@ namespace Character
             RotateRight = context.action.triggered;
         }
     }
-    
-    
+
 
     [Serializable]
     public struct PlayerParameters

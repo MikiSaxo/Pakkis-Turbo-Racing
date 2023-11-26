@@ -18,7 +18,7 @@ public class CamSpeed : MonoBehaviour
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-         // print("touch kayak");
+          print("touch kayak");
          _hasKayak = true;
       }
    }
