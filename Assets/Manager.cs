@@ -6,23 +6,32 @@ using DG.Tweening;
 using TMPro;
 using Tools.SingletonClassBase;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Manager : Singleton<Manager>
 {
-    [field:SerializeField] public int CurrentPlayerNumbers { get; set; }
+    [field: SerializeField] public int CurrentPlayerNumbers { get; set; }
     public bool IsGameStarted { get; set; }
-    
-     public List<UIPlayer> UIPlayers = new List<UIPlayer>();
-     public List<CharacterManager> Players = new List<CharacterManager>();
+
+    [HideInInspector] public List<UIPlayer> UIPlayers = new List<UIPlayer>();
+    [HideInInspector] public List<CharacterManager> Players = new List<CharacterManager>();
 
     [SerializeField, Header("Parameters")] private Transform[] _startPos;
     [SerializeField] private GameObject _textCooldown;
     [SerializeField] private GameObject _raceCam;
 
+    [Header("UI")]
+    [SerializeField] private GameObject _loadingsScreen;
+    [SerializeField] private Image _loadingsStep;
+    [SerializeField] private Image _loadingsBG;
+    [SerializeField] private Sprite[] _loadingsStepSprite;
+    [SerializeField] private float _timeBetweenTwoScreen = 2f;
+
     private bool _canLaunchGame;
     private int _currentPosPlayer;
     private int _currentPlayerReady;
     private float _currentNumber;
+    private int _currentLoadingStep;
 
     private void Start()
     {
@@ -54,40 +63,82 @@ public class Manager : Singleton<Manager>
 
         if (CurrentPlayerNumbers == _currentPlayerReady)
         {
-            print("can launch game");
             _canLaunchGame = true;
-            _textCooldown.SetActive(true);
             
             foreach (var player in Players)
             {
                 player.CanPaddle = false;
             }
             
-            LaunchNumber();
+            StartCoroutine(WaitLaunchLoadingScreen());
         }
-        else
-        {
-            if (_canLaunchGame)
-                _textCooldown.transform.DOKill();
-            
-            foreach (var player in Players)
-            {
-                player.CanPaddle = true;
-            }
-            
-            Reset();
-        }
+        // else
+        // {
+        //     if (_canLaunchGame)
+        //         _textCooldown.transform.DOKill();
+        //     
+        //     foreach (var player in Players)
+        //     {
+        //         player.CanPaddle = true;
+        //     }
+        //     
+        //     ResetCooldownNumber();
+        // }
     }
 
-    private void Reset()
+    private void ResetCooldownNumber()
     {
         _textCooldown.SetActive(false);
         _currentNumber = 4;
     }
 
+    private IEnumerator WaitLaunchLoadingScreen()
+    {
+        yield return new WaitForSeconds(1.5f);
+        LaunchLoadingScreen();
+    }
+    private void LaunchLoadingScreen()
+    {
+        _loadingsScreen.SetActive(true);
+
+        if (_currentLoadingStep == _loadingsStepSprite.Length)
+        {
+            LaunchNumber();
+            _loadingsScreen.SetActive(false);
+            
+            foreach (var uiPlayer in UIPlayers)
+            {
+                // Deactivate Canvas of players
+                uiPlayer.GoGoGo();
+            }
+            
+            return;
+        }
+
+        // _loadingsStep.DOFade(0, 0);
+        // _loadingsBG.DOFade(0, 0);
+        
+        _loadingsStep.sprite = _loadingsStepSprite[_currentLoadingStep];
+        _loadingsBG.DOFade(.8f, _timeBetweenTwoScreen * .25f);
+        _loadingsStep.DOFade(1, _timeBetweenTwoScreen * .25f).OnComplete(LoadingWaitFullFade);
+    }
+
+    private void LoadingWaitFullFade()
+    {
+        _loadingsStep.DOFade(1, _timeBetweenTwoScreen * .5f).OnComplete(LoadingFadeOff);
+        _raceCam.SetActive(true);
+    }
+
+    private void LoadingFadeOff()
+    {
+        _loadingsStep.DOFade(0, _timeBetweenTwoScreen * .25f).OnComplete(LaunchLoadingScreen);
+        _currentLoadingStep++;
+    }
+
     private void LaunchNumber()
     {
         _currentNumber--;
+        _textCooldown.SetActive(true);
 
         if (_currentNumber == 0)
         {
@@ -104,10 +155,10 @@ public class Manager : Singleton<Manager>
             _textCooldown.GetComponent<TMP_Text>().color = new Color(1f, 0.82f, 0.22f);
         _textCooldown.GetComponent<TMP_Text>().text = $"{_currentNumber}";
         
-        _textCooldown.transform.DOPunchScale(Vector3.one, .2f).OnComplete(Wait);
+        _textCooldown.transform.DOPunchScale(Vector3.one, .2f).OnComplete(WaitNumber);
     }
 
-    private void Wait()
+    private void WaitNumber()
     {
         _textCooldown.transform.DOMove(_textCooldown.transform.position, .5f).OnComplete(RotateText);
     }
@@ -120,12 +171,6 @@ public class Manager : Singleton<Manager>
 
     private void LaunchGame()
     {
-        print("launch game");
-        foreach (var uiPlayer in UIPlayers)
-        {
-            uiPlayer.GoGoGo();
-        }
-
         foreach (var player in Players)
         {
             player.CanGo = true;
@@ -138,7 +183,7 @@ public class Manager : Singleton<Manager>
         }
         _canLaunchGame = false;
         IsGameStarted = true;
-        Reset();
-        _raceCam.SetActive(true);
+        ResetCooldownNumber();
+        // _raceCam.SetActive(true);
     }
 }

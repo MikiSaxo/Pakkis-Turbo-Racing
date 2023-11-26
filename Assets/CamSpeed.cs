@@ -18,7 +18,7 @@ public class CamSpeed : MonoBehaviour
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-         print("touch kayak");
+         // print("touch kayak");
          _hasKayak = true;
       }
    }
@@ -27,7 +27,7 @@ public class CamSpeed : MonoBehaviour
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-         print("quit kayak");
+         // print("quit kayak");
          _hasKayak = false;
       }
    }
@@ -36,6 +36,9 @@ public class CamSpeed : MonoBehaviour
    {
       if (!Manager.Instance.IsGameStarted)
          return;
+
+      if (_camCart.m_Speed < _minSpeed)
+         _camCart.m_Speed = _minSpeed;
       
       if (_hasKayak)
       {
