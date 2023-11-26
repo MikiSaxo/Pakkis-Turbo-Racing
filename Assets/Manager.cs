@@ -6,6 +6,7 @@ using DG.Tweening;
 using TMPro;
 using Tools.SingletonClassBase;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Manager : Singleton<Manager>
@@ -21,13 +22,14 @@ public class Manager : Singleton<Manager>
     [SerializeField] private GameObject _textCooldown;
     [SerializeField] private GameObject _raceCam;
 
-    [Header("UI")]
-    [SerializeField] private GameObject _loadingsScreen;
+    [Header("UI")] [SerializeField] private GameObject _loadingsScreen;
     [SerializeField] private Image _loadingsStep;
     [SerializeField] private Image _loadingsBG;
     [SerializeField] private Sprite[] _loadingsStepSprite;
     [SerializeField] private float _timeBetweenTwoScreen = 2f;
     [SerializeField] private Image _bg;
+    [SerializeField] private TMP_Text _startText;
+    [SerializeField] private float _timeFadeStart = 2f;
 
     private bool _canLaunchGame;
     private int _currentPosPlayer;
@@ -38,6 +40,7 @@ public class Manager : Singleton<Manager>
     private void Start()
     {
         _currentNumber = 4;
+        FadeInTextStart();
     }
 
     public Vector3 GetStartPos()
@@ -45,6 +48,10 @@ public class Manager : Singleton<Manager>
         _currentPosPlayer++;
         CurrentPlayerNumbers++;
         CheckIfAllPlayersReady();
+
+        _startText.DOKill();
+        _startText.DOFade(0, 0);
+        _bg.DOFade(0, .5f);
 
         if (_currentPosPlayer >= _startPos.Length)
             return Vector3.zero;
@@ -60,18 +67,18 @@ public class Manager : Singleton<Manager>
             if (player.IsReady)
                 count++;
         }
-        
+
         _currentPlayerReady = count;
 
         if (CurrentPlayerNumbers == _currentPlayerReady)
         {
             _canLaunchGame = true;
-            
+
             foreach (var player in Players)
             {
                 player.CanPaddle = false;
             }
-            
+
             StartCoroutine(WaitLaunchLoadingScreen());
         }
         // else
@@ -99,6 +106,7 @@ public class Manager : Singleton<Manager>
         yield return new WaitForSeconds(1.5f);
         LaunchLoadingScreen();
     }
+
     private void LaunchLoadingScreen()
     {
         _loadingsScreen.SetActive(true);
@@ -107,15 +115,14 @@ public class Manager : Singleton<Manager>
         {
             LaunchNumber();
             _loadingsScreen.SetActive(false);
-            
-            
-            
+
+
             return;
         }
 
         // _loadingsStep.DOFade(0, 0);
         // _loadingsBG.DOFade(0, 0);
-        
+
         _loadingsStep.sprite = _loadingsStepSprite[_currentLoadingStep];
         _loadingsBG.DOFade(.8f, _timeBetweenTwoScreen * .25f);
         _loadingsStep.DOFade(1, _timeBetweenTwoScreen * .25f).OnComplete(LoadingWaitFullFade);
@@ -150,14 +157,14 @@ public class Manager : Singleton<Manager>
             _textCooldown.transform.DOKill();
             return;
         }
-        
-        _textCooldown.transform.DORotate(new Vector3(0,0 ,0), 0);
+
+        _textCooldown.transform.DORotate(new Vector3(0, 0, 0), 0);
         _textCooldown.transform.DOScale(Vector3.one, 0);
-            
-        if(_currentNumber == 1)
+
+        if (_currentNumber == 1)
             _textCooldown.GetComponent<TMP_Text>().color = new Color(1f, 0.82f, 0.22f);
         _textCooldown.GetComponent<TMP_Text>().text = $"{_currentNumber}";
-        
+
         _textCooldown.transform.DOPunchScale(Vector3.one, .2f).OnComplete(WaitNumber);
     }
 
@@ -168,7 +175,7 @@ public class Manager : Singleton<Manager>
 
     private void RotateText()
     {
-        _textCooldown.transform.DORotate(new Vector3(0,0, -360), .3f, RotateMode.FastBeyond360).SetEase(Ease.OutSine);
+        _textCooldown.transform.DORotate(new Vector3(0, 0, -360), .3f, RotateMode.FastBeyond360).SetEase(Ease.OutSine);
         _textCooldown.transform.DOScale(Vector3.zero, .3f).SetEase(Ease.OutSine).OnComplete(LaunchNumber);
     }
 
@@ -184,12 +191,14 @@ public class Manager : Singleton<Manager>
 
             player.ResetPos();
         }
+
         _canLaunchGame = false;
         IsGameStarted = true;
         foreach (var player in Players)
         {
             player.IsDead = false;
         }
+
         ResetCooldownNumber();
         // _raceCam.SetActive(true);
     }
@@ -198,7 +207,7 @@ public class Manager : Singleton<Manager>
     {
         var count = 0;
         ColorKayak color = ColorKayak.Blue;
-        
+
         foreach (var player in Players)
         {
             if (player.IsDead)
@@ -224,6 +233,21 @@ public class Manager : Singleton<Manager>
 
     private void ChangeSceneVictory()
     {
-        
+        SceneManager.LoadScene(1);
+    }
+
+    private void FadeInTextStart()
+    {
+        _startText.DOFade(1, _timeFadeStart * .25f).OnComplete(WaitTextStart);
+    }
+
+    private void WaitTextStart()
+    {
+        _startText.DOFade(1, _timeFadeStart * .5f).OnComplete(FadeOutTextStart);
+    }
+
+    private void FadeOutTextStart()
+    {
+        _startText.DOFade(0, _timeFadeStart * .25f).OnComplete(FadeInTextStart);
     }
 }
