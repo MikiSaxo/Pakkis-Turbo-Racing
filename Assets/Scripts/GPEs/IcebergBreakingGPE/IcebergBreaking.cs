@@ -64,6 +64,7 @@ public class IcebergBreaking : MonoBehaviour
         if(_currentCollisionNumber == 1)
         {
             _fbFragile.SetActive(true);
+            GetComponent<IcebergShake>().hasFallen = true;
         }
     }
 }

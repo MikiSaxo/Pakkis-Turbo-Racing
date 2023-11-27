@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character;
 using Character.State;
+using GPEs.WaterFlowGPE;
 using Kayak.Data;
 using Sound;
 using UnityEngine;
@@ -33,6 +34,14 @@ namespace Kayak
 
         [Header("VFX"), SerializeField] public ParticleSystem LeftPaddleParticle;
         [SerializeField] public ParticleSystem RightPaddleParticle;
+        
+        [Header("Materials"), SerializeField] private Material[] _kayakMatColor;
+        [SerializeField] private Material[] _bodyMatColor;
+        [SerializeField] private MeshRenderer _kayakMat;
+        [SerializeField] private SkinnedMeshRenderer _bodyCoatMat;
+        [SerializeField] private SkinnedMeshRenderer _bodyHoodMat;
+        [SerializeField] private TrailRenderer _trail;
+        [SerializeField] private Color[] _color;
 
         [Header("Events")] public UnityEvent OnKayakCollision;
         public UnityEvent OnKayakSpeedHigh;
@@ -43,11 +52,20 @@ namespace Kayak
         private float _speedEventCountDown;
         private float _particleTimer = -1;
         private CharacterNavigationState.Direction _particleSide;
+        private float _startDrag = 0f;
+        private bool _sprintInProgress = false;
 
 
         private void Start()
         {
             Rb = GetComponent<Rigidbody>();
+            _kayakMat.material = _kayakMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _bodyCoatMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _bodyHoodMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _trail.startColor = _color[Manager.Instance.CurrentPlayerNumbers];
+            _trail.endColor = _color[Manager.Instance.CurrentPlayerNumbers];
+            IsSprinting(false);
+            _startDrag = Rb.drag;
         }
 
         private void Update()
@@ -81,6 +99,24 @@ namespace Kayak
             //Debug.Log($"collision V.M. :{Math.Round(collision.relativeVelocity.magnitude)} -> {Math.Round(value,2)}");
             // characterManager.AddBalanceValueToCurrentSide(value);
             //OnKayakCollision.Invoke();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<WaterFlowBlock>() != null)
+            {
+                // print("water water");
+                Rb.drag = .5f;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<WaterFlowBlock>() != null)
+            {
+                // print("quit water water");
+                Rb.drag = _startDrag;
+            }
         }
 
         /// <summary>
@@ -137,6 +173,11 @@ namespace Kayak
             _particleSide = side;
         }
 
+        public void IsSprinting(bool state)
+        {
+            _sprintInProgress = state;
+            _trail.enabled = state;
+        }
         private void ManageParticlePaddle()
         {
             if (_particleTimer > 0)

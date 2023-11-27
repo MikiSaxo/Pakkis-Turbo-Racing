@@ -80,7 +80,7 @@ namespace GPEs
                     OnPlayerEntered.Invoke();
                 }
 
-                Debug.Log("kayak in trigger");
+                // Debug.Log("kayak in trigger");
                 OnPlayerStay.Invoke();
                 isKayakInTrigger = true;
             }

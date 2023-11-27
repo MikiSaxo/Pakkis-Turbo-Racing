@@ -25,8 +25,8 @@ public class PermanentColorWinner : MonoBehaviour
 
 public enum ColorKayak
 {
-    Blue = 0,
+    Red = 0,
     Green = 1,
-    Purple = 2,
-    Yellow = 3
+    Yellow = 2,
+    Purple = 3
 }
