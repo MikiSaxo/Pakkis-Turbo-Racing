@@ -33,8 +33,7 @@ namespace Kayak
         // [SerializeField, Tooltip("The floaters associated to the kayak's rigidbody")] public Floaters FloatersRef;
 
 
-        [Header("VFX"), SerializeField] public ParticleSystem LeftPaddleParticle;
-        [SerializeField] public ParticleSystem RightPaddleParticle;
+
 
         [Header("Materials"), SerializeField] private Material[] _kayakMatColor;
         [SerializeField] private Material[] _bodyMatColor;
@@ -48,7 +47,16 @@ namespace Kayak
         public UnityEvent OnKayakSpeedHigh;
         [SerializeField] private float _magnitudeToLaunchEventSpeed;
         [SerializeField] private Vector2 _speedEventRecurrenceRandomBetween;
-        [field: SerializeField] public float CooldownPaddleTurbo { get; set; }
+
+        [Header("------------- Yakak")] [field: SerializeField]
+        public float ResetPaddleTurbo;
+        public int NbPaddleToSprint;
+        public float SprintPower;
+        public float DragWhenSprintAndCourant;
+        public float JustToSeeSpeed;
+        
+        [Header("VFX"), SerializeField] public ParticleSystem LeftPaddleParticle;
+        [SerializeField] public ParticleSystem RightPaddleParticle;
 
         //privates
         private float _speedEventCountDown;
@@ -57,7 +65,6 @@ namespace Kayak
         private float _startDrag = 0f;
         private bool _sprintInProgress = false;
 
-        public float Speed;
 
 
         private void Start()
@@ -74,7 +81,7 @@ namespace Kayak
 
         private void Update()
         {
-            Speed = Rb.velocity.magnitude;
+            JustToSeeSpeed = Rb.velocity.magnitude;
 
             if (!CanGo)
                 return;
@@ -112,7 +119,7 @@ namespace Kayak
             if (other.GetComponent<WaterFlowBlock>() != null)
             {
                 // print("water water");
-                Rb.drag = .5f;
+                Rb.drag = DragWhenSprintAndCourant;
             }
         }
 
@@ -136,7 +143,7 @@ namespace Kayak
 
             float velocityX = velocity.x;
             float maxClamp = _sprintInProgress
-                ? kayakValues.MaximumFrontSprintVelocity
+                ? kayakValues.MaximumFrontVelocity*5
                 : kayakValues.MaximumFrontVelocity;
 
             velocityX = Mathf.Clamp(velocityX, -maxClamp, maxClamp);
@@ -181,6 +188,8 @@ namespace Kayak
         {
             _sprintInProgress = state;
             _trail.enabled = state;
+
+            Rb.drag = state ? DragWhenSprintAndCourant : _startDrag;
         }
 
         private void ManageParticlePaddle()

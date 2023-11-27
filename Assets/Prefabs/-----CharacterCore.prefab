@@ -3908,6 +3908,11 @@ PrefabInstance:
       objectReference: {fileID: 6819035549112694595}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
+      propertyPath: SprintPower
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
       propertyPath: _bodyCoatMat
       value: 
       objectReference: {fileID: 5885571812312063562}
@@ -3916,6 +3921,16 @@ PrefabInstance:
       propertyPath: _bodyHoodMat
       value: 
       objectReference: {fileID: 6397237428051461844}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: NbPaddleToSprint
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: ResetPaddleTurbo
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _color.Array.size
@@ -3931,6 +3946,11 @@ PrefabInstance:
       propertyPath: <Rb>k__BackingField
       value: 
       objectReference: {fileID: 5010205659145823893}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: CooldownPaddleTurbo
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: RightPaddleParticle
@@ -4055,6 +4075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _color.Array.data[4].r
       value: 0.60384953
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: DragWhenSprintAndCourant
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}

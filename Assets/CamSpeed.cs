@@ -26,14 +26,19 @@ public class CamSpeed : MonoBehaviour
       }
    }
 
+   private void OnTriggerStay(Collider other)
+   {
+      if (other.gameObject.GetComponent<KayakController>())
+      {
+         _hasKayak = true;
+      }
+   }
+
    private void OnTriggerExit(Collider other)
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-         // print("quit kayak");
-         _kayakNb--;
-         if (_kayakNb < 0)
-            _kayakNb = 0;
+         _hasKayak = false;
       }
    }
 
@@ -45,7 +50,7 @@ public class CamSpeed : MonoBehaviour
       if (_camCart.m_Speed < _minSpeed)
          _camCart.m_Speed = _minSpeed;
       
-      if (_kayakNb > 0)
+      if (_hasKayak)
       {
          if(_camCart.m_Speed <= _maxSpeed)
             _camCart.m_Speed += Time.deltaTime * _acceleration;
