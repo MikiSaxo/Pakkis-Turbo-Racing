@@ -3903,6 +3903,11 @@ PrefabInstance:
       objectReference: {fileID: 993576875729883984}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
+      propertyPath: StartDrag
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
       propertyPath: _kayakMat
       value: 
       objectReference: {fileID: 6819035549112694595}

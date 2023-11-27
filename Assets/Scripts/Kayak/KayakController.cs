@@ -52,6 +52,7 @@ namespace Kayak
         public float ReducePaddleTurbo;
         public int NbPaddleToSprint;
         public float SprintPower;
+        public float StartDrag;
         public float DragWhenSprintAndCourant;
         public float JustToSeeSpeed;
         
@@ -62,7 +63,6 @@ namespace Kayak
         private float _speedEventCountDown;
         private float _particleTimer = -1;
         private CharacterNavigationState.Direction _particleSide;
-        private float _startDrag = 0f;
         private bool _sprintInProgress = false;
 
 
@@ -76,7 +76,6 @@ namespace Kayak
             _trail.startColor = _color[Manager.Instance.CurrentPlayerNumbers];
             _trail.endColor = _color[Manager.Instance.CurrentPlayerNumbers];
             IsSprinting(false);
-            _startDrag = Rb.drag;
         }
 
         private void Update()
@@ -128,7 +127,7 @@ namespace Kayak
             if (other.GetComponent<WaterFlowBlock>() != null)
             {
                 // print("quit water water");
-                Rb.drag = _startDrag;
+                Rb.drag = StartDrag;
             }
         }
 
@@ -189,7 +188,7 @@ namespace Kayak
             _sprintInProgress = state;
             _trail.enabled = state;
 
-            Rb.drag = state ? DragWhenSprintAndCourant : _startDrag;
+            Rb.drag = state ? DragWhenSprintAndCourant : StartDrag;
         }
 
         private void ManageParticlePaddle()
