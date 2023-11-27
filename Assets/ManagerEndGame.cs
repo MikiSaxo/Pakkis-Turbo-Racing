@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ManagerEndGame : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class ManagerEndGame : MonoBehaviour
     [Header("Mat")]
     [SerializeField] private Material[] _kayakMat;
     [SerializeField] private Material[] _bodyMat;
+    
+    [Header("Values")]
+    [SerializeField] private float _timerBackMainScene;
 
     private void Start()
     {
@@ -34,6 +38,16 @@ public class ManagerEndGame : MonoBehaviour
                 
                 count++;
             }
+        }
+    }
+
+    private void Update()
+    {
+        _timerBackMainScene -= Time.deltaTime;
+
+        if (_timerBackMainScene < 0)
+        {
+            SceneManager.LoadScene(0);
         }
     }
 }

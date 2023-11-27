@@ -33,6 +33,7 @@ public class Manager : Singleton<Manager>
     [SerializeField] private Image _bg;
     [SerializeField] private TMP_Text _startText;
     [SerializeField] private float _timeFadeStart = 2f;
+    [SerializeField] private GameObject _startPanel;
 
     private bool _canLaunchGame;
     private int _currentPosPlayer;
@@ -56,6 +57,7 @@ public class Manager : Singleton<Manager>
         CurrentPlayerNumbers++;
         CheckIfAllPlayersReady();
 
+        _startPanel.SetActive(false);
         _startText.DOKill();
         _startText.DOFade(0, 0);
         _bg.DOFade(0, .5f);
