@@ -348,7 +348,7 @@ namespace Character.State
             if (_paddleCount >= 10f)
             {
                 Debug.Log("im sprinting");
-                CharacterManagerRef.SprintInProgress = true;
+                CharacterManagerRef.KayakControllerProperty.IsSprinting(true);
                 CharacterManagerRef.OnEnterSprint.Invoke();
             }
             else

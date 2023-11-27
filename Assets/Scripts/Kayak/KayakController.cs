@@ -40,6 +40,8 @@ namespace Kayak
         [SerializeField] private MeshRenderer _kayakMat;
         [SerializeField] private SkinnedMeshRenderer _bodyCoatMat;
         [SerializeField] private SkinnedMeshRenderer _bodyHoodMat;
+        [SerializeField] private TrailRenderer _trail;
+        [SerializeField] private Color[] _color;
 
         [Header("Events")] public UnityEvent OnKayakCollision;
         public UnityEvent OnKayakSpeedHigh;
@@ -51,6 +53,7 @@ namespace Kayak
         private float _particleTimer = -1;
         private CharacterNavigationState.Direction _particleSide;
         private float _startDrag = 0f;
+        private bool _sprintInProgress = false;
 
 
         private void Start()
@@ -59,6 +62,9 @@ namespace Kayak
             _kayakMat.material = _kayakMatColor[Manager.Instance.CurrentPlayerNumbers];
             _bodyCoatMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
             _bodyHoodMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _trail.startColor = _color[Manager.Instance.CurrentPlayerNumbers];
+            _trail.endColor = _color[Manager.Instance.CurrentPlayerNumbers];
+            IsSprinting(false);
             _startDrag = Rb.drag;
         }
 
@@ -167,6 +173,11 @@ namespace Kayak
             _particleSide = side;
         }
 
+        public void IsSprinting(bool state)
+        {
+            _sprintInProgress = state;
+            _trail.enabled = state;
+        }
         private void ManageParticlePaddle()
         {
             if (_particleTimer > 0)
