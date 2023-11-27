@@ -4366,6 +4366,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Colonne_1
       objectReference: {fileID: 0}
+    - target: {fileID: 4501612755861445178, guid: acbf8aa7a6d61284d911ada70166412d,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4984,6 +4989,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.021317
       objectReference: {fileID: 0}
+    - target: {fileID: 5248981001572919966, guid: 26eb551a80deeda4f8ff563d220b3777,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6755696782523215152, guid: 26eb551a80deeda4f8ff563d220b3777,
         type: 3}
       propertyPath: m_Name
@@ -5341,6 +5351,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Falaise_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8908403600548955134, guid: 5e64480a777623f47acbb8114d836869,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5439,6 +5454,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 523084676896807813}
     m_Modifications:
+    - target: {fileID: 591702856011697686, guid: 52e7f059edda982429b0d2ef04dff103,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5980519690807764378, guid: 52e7f059edda982429b0d2ef04dff103,
         type: 3}
       propertyPath: m_RootOrder
@@ -6780,6 +6800,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 523084676896807813}
     m_Modifications:
+    - target: {fileID: 781285957002902235, guid: da5dd8e713b22c145b69ad7da6346c66,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 841624493030988029, guid: da5dd8e713b22c145b69ad7da6346c66,
         type: 3}
       propertyPath: m_RootOrder
@@ -8968,6 +8993,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Colonne_2
       objectReference: {fileID: 0}
+    - target: {fileID: 5663961101191543435, guid: 063bbe5a4296af449bd93c39dd9828f3,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9843,6 +9873,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 523084676896807813}
     m_Modifications:
+    - target: {fileID: 3238603195050896271, guid: 0d039297d7b339043a6bf67782787824,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5980519690807764378, guid: 0d039297d7b339043a6bf67782787824,
         type: 3}
       propertyPath: m_RootOrder

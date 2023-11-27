@@ -3018,6 +3018,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
+      propertyPath: SprintPower
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
       propertyPath: _bodyCoatMat
       value: 
       objectReference: {fileID: 5885571812312063562}
@@ -3026,6 +3031,16 @@ PrefabInstance:
       propertyPath: _bodyHoodMat
       value: 
       objectReference: {fileID: 6397237428051461844}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: NbPaddleToSprint
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: ReducePaddleTurbo
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: LeftPaddleParticle
