@@ -77,7 +77,7 @@ namespace Character.State
             _leftPaddleCooldown = _kayakValues.PaddleCooldown;
             _staticInputTimer = _kayakValues.StaticRotationCooldownAfterPaddle;
 
-            _paddleCooldown = CharacterManagerRef.KayakControllerProperty.ResetPaddleTurbo;
+            _paddleCooldown = CharacterManagerRef.KayakControllerProperty.ReducePaddleTurbo;
             _paddleNumber = CharacterManagerRef.KayakControllerProperty.NbPaddleToSprint;
             _paddleForceSprint = CharacterManagerRef.KayakControllerProperty.SprintPower;
             _hasReleasePaddle = true;
@@ -106,8 +106,8 @@ namespace Character.State
                 if (_paddleCooldownCurrent >= _paddleCooldown)
                 {
                     _paddleCooldownCurrent = 0;
-                    _paddleCount = 0;
-                    Debug.Log("reduce to 0");
+                    _paddleCount --;
+                    Debug.Log("reduce");
                 }
             }
         }
@@ -327,7 +327,7 @@ namespace Character.State
                 {
                     _paddleCooldownAddPaddle = 0;
                     _paddleCount++;
-                    _paddleCooldownCurrent = 0;
+                    //_paddleCooldownCurrent = 0;
                     _hasReleasePaddle = false;
                     Debug.Log($"Count {_paddleCount}");
                 }

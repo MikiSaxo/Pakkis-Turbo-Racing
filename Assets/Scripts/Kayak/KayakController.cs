@@ -48,8 +48,8 @@ namespace Kayak
         [SerializeField] private float _magnitudeToLaunchEventSpeed;
         [SerializeField] private Vector2 _speedEventRecurrenceRandomBetween;
 
-        [Header("------------- Yakak")] [field: SerializeField]
-        public float ResetPaddleTurbo;
+        [FormerlySerializedAs("ResetPaddleTurbo")] [Header("------------- Yakak")] [field: SerializeField]
+        public float ReducePaddleTurbo;
         public int NbPaddleToSprint;
         public float SprintPower;
         public float DragWhenSprintAndCourant;
