@@ -6,14 +6,14 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/---------RaceScene.unity
-    guid: 1aebe093f55b672479286c6c2b1578e4
+    path: Assets/Scenes/RaceScene_ldTests.unity
+    guid: 177edb36d54b37045b246ba51bea2f1c
   - enabled: 1
     path: Assets/Scenes/---------EndScene.unity
     guid: c8b377559eacd8e42a47c936400c9114
-  - enabled: 1
-    path: Assets/Scenes/RaceScene_ldTests.unity
-    guid: 177edb36d54b37045b246ba51bea2f1c
+  - enabled: 0
+    path: Assets/Scenes/---------RaceScene.unity
+    guid: 1aebe093f55b672479286c6c2b1578e4
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 80c5aa77f06ec9f4387a592826ae7527,
       type: 2}
