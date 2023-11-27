@@ -37,6 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 1112987742649111880}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 60bab3416c6bfb446a1411a78a2a1190,
@@ -120,6 +121,13 @@ PrefabInstance:
       value: LandMark_Module_2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60bab3416c6bfb446a1411a78a2a1190,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4691751793334033319}
   m_SourcePrefab: {fileID: 100100000, guid: 60bab3416c6bfb446a1411a78a2a1190, type: 3}
 --- !u!4 &5002992108347432502 stripped
 Transform:
@@ -141,9 +149,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5631155932685780108}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -3996760141626369306, guid: 60bab3416c6bfb446a1411a78a2a1190, type: 3}
