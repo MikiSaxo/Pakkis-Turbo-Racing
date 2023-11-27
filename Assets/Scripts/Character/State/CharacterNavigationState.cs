@@ -112,6 +112,9 @@ namespace Character.State
                     if (_paddleCount < 0)
                         _paddleCount = 0;
                     
+                    if(_paddleCount < _paddleNbPaddleToSprint)
+                        DisableSprint();
+                    
                     Debug.Log("reduce");
                 }
             }
@@ -316,8 +319,9 @@ namespace Character.State
                     //_paddleCooldownCurrent = 0;
                     _hasReleasePaddle = false;
                     Debug.Log($"Count {_paddleCount}");
-                    
-                    // if(_paddleCount > )
+
+                    if (_paddleCount > _paddleNbPaddleToSprint + 1)
+                        _paddleCount = _paddleNbPaddleToSprint + 1;
                 }
             }
             
