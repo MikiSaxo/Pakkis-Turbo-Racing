@@ -173,6 +173,7 @@ GameObject:
   - component: {fileID: 2453446874202040158}
   - component: {fileID: -6403118241078154370}
   - component: {fileID: 330139264749044154}
+  - component: {fileID: -1997713020790681794}
   m_Layer: 0
   m_Name: IcebergFalling
   m_TagString: Untagged
@@ -216,7 +217,7 @@ MonoBehaviour:
   Fall: 0
   HasFallen: 0
   _fallDuration: 1.5
-  _endPosition: {x: 0.53, y: -22.6, z: 1.35}
+  _endPosition: {x: 0.53, y: -22.2, z: 1.35}
   _endRotation: {x: 0, y: 0, z: 0}
   _fallSpeedCurve:
     serializedVersion: 2
@@ -365,6 +366,22 @@ MonoBehaviour:
       Data3: 1723462552
       Data4: -81351706
     Path: event:/SFX/Iceberg fall/FX_falling_iceberg_start
+--- !u!114 &-1997713020790681794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2453446874202040147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b666b58871948fa48bf10f94d07b3550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 50
+  amountMin: 1
+  amountMax: 3
+  hasFallen: 0
 --- !u!1 &6471957552833506103
 GameObject:
   m_ObjectHideFlags: 0
