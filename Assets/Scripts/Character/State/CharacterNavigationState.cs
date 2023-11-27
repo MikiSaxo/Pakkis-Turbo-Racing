@@ -46,6 +46,7 @@ namespace Character.State
 
         private float _timerLastInputTrigger = 0;
         private Direction _lastInputPaddle;
+        private int _paddleCount = 0;
 
         #region Constructor
 
@@ -295,6 +296,8 @@ namespace Character.State
                 _rightPaddleCooldown = _kayakValues.PaddleCooldown / 2;
                 CheckIfSprint(direction);
                 Paddle(direction);
+                if(Manager.Instance.IsGameStarted)
+                    _paddleCount++;
             }
 
             if (CharacterManagerRef.PaddleRight && _rightPaddleCooldown <= 0 && CharacterManagerRef.PaddleLeft == false)
@@ -305,6 +308,8 @@ namespace Character.State
                 _leftPaddleCooldown = _kayakValues.PaddleCooldown / 2;
                 CheckIfSprint(direction);
                 Paddle(direction);
+                if(Manager.Instance.IsGameStarted)
+                    _paddleCount++;
             }
         }
 
@@ -335,14 +340,14 @@ namespace Character.State
 
         private void CheckIfSprint(Direction direction)
         {
-            if (_lastInputPaddle == direction || CharacterManagerRef.Abilities.SprintUnlock == false)
-            {
-                return;
-            }
+            // if (_lastInputPaddle == direction || CharacterManagerRef.Abilities.SprintUnlock == false)
+            // {
+            //     return;
+            // }
 
-            if (_timerLastInputTrigger >= _kayakValues.TimerMinForSprint &&
-                _timerLastInputTrigger <= _kayakValues.TimerMaxForSprint)
+            if (_paddleCount >= 10f)
             {
+                Debug.Log("im sprinting");
                 CharacterManagerRef.SprintInProgress = true;
                 CharacterManagerRef.OnEnterSprint.Invoke();
             }

@@ -19,7 +19,7 @@ public class CamSpeed : MonoBehaviour
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-          print("touch kayak");
+          // print("touch kayak");
           _kayakNb++;
           if (_kayakNb > 4)
              _kayakNb = 4;
@@ -30,7 +30,7 @@ public class CamSpeed : MonoBehaviour
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-         print("quit kayak");
+         // print("quit kayak");
          _kayakNb--;
          if (_kayakNb < 0)
             _kayakNb = 0;
