@@ -99,7 +99,7 @@ namespace Kayak
         {
             if (other.GetComponent<WaterFlowBlock>() != null)
             {
-                print("water water");
+                // print("water water");
                 Rb.drag = .5f;
             }
         }
@@ -108,7 +108,7 @@ namespace Kayak
         {
             if (other.GetComponent<WaterFlowBlock>() != null)
             {
-                print("quit water water");
+                // print("quit water water");
                 Rb.drag = _startDrag;
             }
         }

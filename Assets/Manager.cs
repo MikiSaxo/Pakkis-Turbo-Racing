@@ -206,7 +206,7 @@ public class Manager : Singleton<Manager>
     public void CheckIfAllPlayerDead()
     {
         var count = 0;
-        ColorKayak color = ColorKayak.Blue;
+        ColorKayak color = ColorKayak.Red;
 
         foreach (var player in Players)
         {
