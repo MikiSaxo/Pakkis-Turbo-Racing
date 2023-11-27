@@ -75,7 +75,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Range: 0.39
-    - _SnowAmount: 0.07864537
+    - _SnowAmount: 0.37078547
     - _SnowBlend: 0.05
     - _SnowColorNoiseSize: 250
     - _SnowColorNoiseStrength: 0.5

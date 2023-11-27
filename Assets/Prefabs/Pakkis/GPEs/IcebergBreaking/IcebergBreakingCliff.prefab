@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9157955878562705057}
   - component: {fileID: 433109862043876182}
+  - component: {fileID: 3591820611987836522}
   m_Layer: 0
   m_Name: IcebergBreakingCliff
   m_TagString: Untagged
@@ -34,7 +35,7 @@ Transform:
   - {fileID: 2791277715493921566}
   - {fileID: 5203916404656142635}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &433109862043876182
 MonoBehaviour:
@@ -53,6 +54,22 @@ MonoBehaviour:
   _fbFragile: {fileID: 4860464588600845201}
   _breakingCollisionNumber: 1
   _hitParticles: {fileID: 0}
+--- !u!114 &3591820611987836522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4483968434776896208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b666b58871948fa48bf10f94d07b3550, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 60
+  amountMin: 3
+  amountMax: 6
+  hasFallen: 0
 --- !u!1 &5420012954563996545
 GameObject:
   m_ObjectHideFlags: 0
