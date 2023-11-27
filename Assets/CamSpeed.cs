@@ -14,12 +14,15 @@ public class CamSpeed : MonoBehaviour
    [SerializeField] private float _deceleration = 5f;
 
    private bool _hasKayak;
+   private int _kayakNb;
    private void OnTriggerEnter(Collider other)
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
           print("touch kayak");
-         _hasKayak = true;
+          _kayakNb++;
+          if (_kayakNb > 4)
+             _kayakNb = 4;
       }
    }
 
@@ -27,8 +30,10 @@ public class CamSpeed : MonoBehaviour
    {
       if (other.gameObject.GetComponent<KayakController>())
       {
-         // print("quit kayak");
-         _hasKayak = false;
+         print("quit kayak");
+         _kayakNb--;
+         if (_kayakNb < 0)
+            _kayakNb = 0;
       }
    }
 
@@ -40,7 +45,7 @@ public class CamSpeed : MonoBehaviour
       if (_camCart.m_Speed < _minSpeed)
          _camCart.m_Speed = _minSpeed;
       
-      if (_hasKayak)
+      if (_kayakNb > 0)
       {
          if(_camCart.m_Speed <= _maxSpeed)
             _camCart.m_Speed += Time.deltaTime * _acceleration;

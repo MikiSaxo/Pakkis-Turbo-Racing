@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character;
 using Character.State;
+using GPEs.WaterFlowGPE;
 using Kayak.Data;
 using Sound;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace Kayak
         private float _speedEventCountDown;
         private float _particleTimer = -1;
         private CharacterNavigationState.Direction _particleSide;
+        private float _startDrag = 0f;
 
 
         private void Start()
@@ -57,6 +59,7 @@ namespace Kayak
             _kayakMat.material = _kayakMatColor[Manager.Instance.CurrentPlayerNumbers];
             _bodyCoatMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
             _bodyHoodMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _startDrag = Rb.drag;
         }
 
         private void Update()
@@ -90,6 +93,24 @@ namespace Kayak
             //Debug.Log($"collision V.M. :{Math.Round(collision.relativeVelocity.magnitude)} -> {Math.Round(value,2)}");
             // characterManager.AddBalanceValueToCurrentSide(value);
             //OnKayakCollision.Invoke();
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<WaterFlowBlock>() != null)
+            {
+                print("water water");
+                Rb.drag = .5f;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<WaterFlowBlock>() != null)
+            {
+                print("quit water water");
+                Rb.drag = _startDrag;
+            }
         }
 
         /// <summary>

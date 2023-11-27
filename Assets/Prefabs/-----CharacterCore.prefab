@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 8448442312743378426}
   - component: {fileID: 1825468653825344774}
   m_Layer: 0
-  m_Name: CharacterCore
+  m_Name: -----CharacterCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4093,6 +4093,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4404043767118344106}
+    - targetCorrespondingSourceObject: {fileID: 333907971529626045, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1585730726778623488}
   m_SourcePrefab: {fileID: 100100000, guid: bc06d1e844ba3694bbdecce4a99ba863, type: 3}
 --- !u!114 &403038947937479963 stripped
 MonoBehaviour:
@@ -4185,6 +4189,27 @@ MonoBehaviour:
       Data3: -1755269492
       Data4: 1587637557
     Path: event:/SFX/Kayak/FX_row_hull_water
+--- !u!65 &1585730726778623488
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010205659145823883}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16236366, y: 3.9668322, z: 0.10519142}
+  m_Center: {x: 0, y: -2.1405115, z: 0}
 --- !u!54 &5010205659145823893 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 333907971529626019, guid: bc06d1e844ba3694bbdecce4a99ba863,
