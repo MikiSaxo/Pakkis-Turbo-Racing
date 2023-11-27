@@ -41,10 +41,18 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7177918529105589442}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
+  serializedVersion: 5
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 7485205316709286908, guid: 1151f699e389c3e4faa978b74e2e43f3, type: 3}
 --- !u!1001 &3079848260216716471
@@ -52,6 +60,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 2107275677103331585}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 1151f699e389c3e4faa978b74e2e43f3,
@@ -120,7 +129,42 @@ PrefabInstance:
       value: Iceberg_Plane_Texture
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1151f699e389c3e4faa978b74e2e43f3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4717175190026546855}
   m_SourcePrefab: {fileID: 100100000, guid: 1151f699e389c3e4faa978b74e2e43f3, type: 3}
+--- !u!1 &2773294318308245990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1151f699e389c3e4faa978b74e2e43f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 3079848260216716471}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &4717175190026546855
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2773294318308245990}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7485205316709286908, guid: 1151f699e389c3e4faa978b74e2e43f3, type: 3}
 --- !u!4 &3258188105352420188 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1151f699e389c3e4faa978b74e2e43f3,

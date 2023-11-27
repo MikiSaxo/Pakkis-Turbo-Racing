@@ -48,7 +48,11 @@ namespace Character.State
         private Direction _lastInputPaddle;
         private int _paddleCount = 0;
         private float _paddleCooldownCurrent = 0;
+        private float _paddleCooldownAddPaddle = 0;
         private float _paddleCooldown = 0;
+        private float _paddleForceSprint = 0;
+        private int _paddleNumber = 0;
+        private bool _hasReleasePaddle = false;
 
         #region Constructor
 
@@ -73,7 +77,10 @@ namespace Character.State
             _leftPaddleCooldown = _kayakValues.PaddleCooldown;
             _staticInputTimer = _kayakValues.StaticRotationCooldownAfterPaddle;
 
-            _paddleCooldown = CharacterManagerRef.KayakControllerProperty.CooldownPaddleTurbo;
+            _paddleCooldown = CharacterManagerRef.KayakControllerProperty.ReducePaddleTurbo;
+            _paddleNumber = CharacterManagerRef.KayakControllerProperty.NbPaddleToSprint;
+            _paddleForceSprint = CharacterManagerRef.KayakControllerProperty.SprintPower;
+            _hasReleasePaddle = true;
                 
             //booleans
             CanBeMoved = true;
@@ -99,7 +106,7 @@ namespace Character.State
                 if (_paddleCooldownCurrent >= _paddleCooldown)
                 {
                     _paddleCooldownCurrent = 0;
-                    _paddleCount--;
+                    _paddleCount --;
                     Debug.Log("reduce");
                 }
             }
@@ -216,6 +223,13 @@ namespace Character.State
                 }
             }
 
+            // Debug.Log($"Left {CharacterManagerRef.PaddleLeft} / Right {CharacterManagerRef.PaddleRight}");
+            if (CharacterManagerRef.PaddleLeft == false && CharacterManagerRef.PaddleRight == false)
+            {
+                // Debug.Log($"Release");
+                _hasReleasePaddle = true;
+            }
+            
             if (((staticInput == false) ||
                  (_lastInputType == RotationType.Static)) &&
                 paddleInput)
@@ -299,18 +313,28 @@ namespace Character.State
         private void HandlePaddleMovement()
         {
             //input -> paddleMovement
-            if (CharacterManagerRef.PaddleRight && CharacterManagerRef.PaddleLeft)
-            {
-                HandleBothPress();
-            }
+            // if (CharacterManagerRef.PaddleRight && CharacterManagerRef.PaddleLeft)
+            // {
+            //     HandleBothPress();
+            // }
 
+            // _paddleCooldownAddPaddle += Time.deltaTime;
+            
             if (CharacterManagerRef.PaddleLeft && CharacterManagerRef.PaddleRight == false
                 || CharacterManagerRef.PaddleRight && CharacterManagerRef.PaddleLeft == false)
             {
-                if(Manager.Instance.IsGameStarted)
+                if (Manager.Instance.IsGameStarted && _hasReleasePaddle)
+                {
+                    _paddleCooldownAddPaddle = 0;
                     _paddleCount++;
+                    //_paddleCooldownCurrent = 0;
+                    _hasReleasePaddle = false;
+                    Debug.Log($"Count {_paddleCount}");
+                }
             }
 
+            
+            
             if (CharacterManagerRef.PaddleLeft && _leftPaddleCooldown <= 0 && CharacterManagerRef.PaddleRight == false)
             {
                 Direction direction =
@@ -358,6 +382,7 @@ namespace Character.State
             RotationStaticForceY = Mathf.Lerp(RotationStaticForceY, 0, 0.1f);
         }
 
+        private bool _isSprinting;
         private void CheckIfSprint(Direction direction)
         {
             // if (_lastInputPaddle == direction || CharacterManagerRef.Abilities.SprintUnlock == false)
@@ -365,11 +390,13 @@ namespace Character.State
             //     return;
             // }
 
-            if (_paddleCount >= 10f)
+            if (_paddleCount >= _paddleNumber)
             {
                 Debug.Log("im sprinting");
                 CharacterManagerRef.KayakControllerProperty.IsSprinting(true);
                 CharacterManagerRef.OnEnterSprint.Invoke();
+                _isSprinting = true;
+                _paddleCount =_paddleNumber + 1;
             }
             else
             {
@@ -382,6 +409,7 @@ namespace Character.State
 
         public void DisableSprint()
         {
+            _isSprinting = false;
             CharacterManagerRef.KayakControllerProperty.IsSprinting(false);
             CharacterManagerRef.OnStopSprint.Invoke();
         }
@@ -391,7 +419,7 @@ namespace Character.State
         /// </summary>
         private IEnumerator PaddleForceCurve()
         {
-            float sprintMultiply = CharacterManagerRef.SprintInProgress ? _kayakValues.MultiplyValueForceInSprint*3 : 1;
+            float sprintMultiply = CharacterManagerRef.SprintInProgress ? _paddleForceSprint : 1;
             for (int i = 0; i <= _kayakValues.NumberOfForceAppliance; i++)
             {
                 float x = 1f / _kayakValues.NumberOfForceAppliance * i;
@@ -425,6 +453,9 @@ namespace Character.State
         /// </summary>
         private void HandleStaticRotation()
         {
+            if (_isSprinting)
+                return;
+            
             bool isFast = Mathf.Abs(_kayakRigidbody.velocity.x + _kayakRigidbody.velocity.z) >= 0.1f;
 
             //left
@@ -471,6 +502,9 @@ namespace Character.State
         /// </summary>
         private void DecelerationAndRotate(Direction direction)
         {
+            if (_isSprinting)
+                return;
+            
             Vector3 targetVelocity = new Vector3(0, _kayakRigidbody.velocity.y, 0);
 
             float lerp = _kayakValues.VelocityDecelerationLerp *

@@ -37,6 +37,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 881919390279525783}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 3c30f331820d65546ab396e7aa6bfd7d,
@@ -120,6 +121,13 @@ PrefabInstance:
       value: Iceberg_7_texture
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3c30f331820d65546ab396e7aa6bfd7d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9194585936239761835}
   m_SourcePrefab: {fileID: 100100000, guid: 3c30f331820d65546ab396e7aa6bfd7d, type: 3}
 --- !u!1 &5993004232411408886 stripped
 GameObject:
@@ -135,9 +143,17 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5993004232411408886}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5574251429362783637, guid: 3c30f331820d65546ab396e7aa6bfd7d, type: 3}

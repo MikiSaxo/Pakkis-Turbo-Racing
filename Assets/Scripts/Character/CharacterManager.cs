@@ -128,7 +128,6 @@ namespace Character
             _hasInit = true;
         }
 
-
         private void Update()
         {
             if (IsDead || Manager.Instance.IsGameEnded)

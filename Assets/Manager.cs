@@ -12,6 +12,9 @@ using UnityEngine.UI;
 public class Manager : Singleton<Manager>
 {
     [field: SerializeField] public int CurrentPlayerNumbers { get; set; }
+    
+    [field: SerializeField] public bool IsTesting { get; set; }
+
     public bool IsGameStarted { get; set; }
     public bool IsGameEnded { get; set; }
 
@@ -40,6 +43,10 @@ public class Manager : Singleton<Manager>
     private void Start()
     {
         _currentNumber = 4;
+
+        if (IsTesting)
+            StartFaster();
+        
         FadeInTextStart();
     }
 
@@ -200,7 +207,7 @@ public class Manager : Singleton<Manager>
         }
 
         ResetCooldownNumber();
-        // _raceCam.SetActive(true);
+        _raceCam.SetActive(true);
     }
 
     public void CheckIfAllPlayerDead()
@@ -249,5 +256,10 @@ public class Manager : Singleton<Manager>
     private void FadeOutTextStart()
     {
         _startText.DOFade(0, _timeFadeStart * .25f).OnComplete(FadeInTextStart);
+    }
+
+    private void StartFaster()
+    {
+        _timeBetweenTwoScreen = .1f;
     }
 }
