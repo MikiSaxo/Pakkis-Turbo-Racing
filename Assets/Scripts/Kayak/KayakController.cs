@@ -33,6 +33,9 @@ namespace Kayak
 
         [Header("VFX"), SerializeField] public ParticleSystem LeftPaddleParticle;
         [SerializeField] public ParticleSystem RightPaddleParticle;
+        
+        [Header("Materials"), SerializeField] private Material[] _kayakMatColor;
+        [SerializeField] private MeshRenderer _kayakMat;
 
         [Header("Events")] public UnityEvent OnKayakCollision;
         public UnityEvent OnKayakSpeedHigh;
@@ -48,6 +51,7 @@ namespace Kayak
         private void Start()
         {
             Rb = GetComponent<Rigidbody>();
+            _kayakMat.material = _kayakMatColor[Manager.Instance.CurrentPlayerNumbers];
         }
 
         private void Update()
