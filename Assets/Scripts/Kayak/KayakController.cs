@@ -35,7 +35,10 @@ namespace Kayak
         [SerializeField] public ParticleSystem RightPaddleParticle;
         
         [Header("Materials"), SerializeField] private Material[] _kayakMatColor;
+        [SerializeField] private Material[] _bodyMatColor;
         [SerializeField] private MeshRenderer _kayakMat;
+        [SerializeField] private SkinnedMeshRenderer _bodyCoatMat;
+        [SerializeField] private SkinnedMeshRenderer _bodyHoodMat;
 
         [Header("Events")] public UnityEvent OnKayakCollision;
         public UnityEvent OnKayakSpeedHigh;
@@ -52,6 +55,8 @@ namespace Kayak
         {
             Rb = GetComponent<Rigidbody>();
             _kayakMat.material = _kayakMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _bodyCoatMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
+            _bodyHoodMat.material = _bodyMatColor[Manager.Instance.CurrentPlayerNumbers];
         }
 
         private void Update()

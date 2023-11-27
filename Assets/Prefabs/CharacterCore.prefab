@@ -2342,6 +2342,11 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.49918705
       objectReference: {fileID: 0}
+    - target: {fileID: 5393137421020296117, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6050509299493686131, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2466,6 +2471,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NunaRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301324319852252436, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6531811087960991906, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
         type: 3}
@@ -2888,6 +2898,18 @@ MonoBehaviour:
 --- !u!4 &5679690091661545481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6645375409223538606, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1363268739413854119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &5885571812312063562 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4847717987475642861, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
+    type: 3}
+  m_PrefabInstance: {fileID: 1363268739413854119}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6397237428051461844 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 5344858212736631155, guid: 90e5008432bdbda4ab6dd8c7ef373dab,
     type: 3}
   m_PrefabInstance: {fileID: 1363268739413854119}
   m_PrefabAsset: {fileID: 0}
@@ -3831,6 +3853,16 @@ PrefabInstance:
       objectReference: {fileID: 6819035549112694595}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
+      propertyPath: _bodyCoatMat
+      value: 
+      objectReference: {fileID: 5885571812312063562}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: _bodyHoodMat
+      value: 
+      objectReference: {fileID: 6397237428051461844}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
       propertyPath: LeftPaddleParticle
       value: 
       objectReference: {fileID: 6182542382751506192}
@@ -3866,9 +3898,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
+      propertyPath: _bodyMatColor.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
       propertyPath: _kayakMatColor.Array.size
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: _bodyMatColor.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4026dedc85255ce419390e3b08349f88, type: 2}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: _bodyMatColor.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4026dedc85255ce419390e3b08349f88, type: 2}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: _bodyMatColor.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: cbc5549b8380c0446be2551cba45eb57, type: 2}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: _bodyMatColor.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: ccf0c6734376f3a4fb0d32e47b0035c8, type: 2}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: _bodyMatColor.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: c7bbe63f40e8ff34f98b01f80a5cb0fc, type: 2}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _kayakMatColor.Array.data[0]
@@ -3878,22 +3940,22 @@ PrefabInstance:
         type: 3}
       propertyPath: _kayakMatColor.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: f4039768174fb3b4481cc7fdb5e5b860, type: 2}
+      objectReference: {fileID: 2100000, guid: 7e7bd949dc5a04c408f1d00049c9ad6e, type: 2}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _kayakMatColor.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: f4eb4038e77eb634781a159537e0725f, type: 2}
+      objectReference: {fileID: 2100000, guid: 9d36897e41b7d824bb99bc3c39bdc0d2, type: 2}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _kayakMatColor.Array.data[3]
       value: 
-      objectReference: {fileID: 2100000, guid: d0855c6de75a4d146bf46271f2099274, type: 2}
+      objectReference: {fileID: 2100000, guid: a4c7732d29c3ce14583573fba524bff2, type: 2}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _kayakMatColor.Array.data[4]
       value: 
-      objectReference: {fileID: 2100000, guid: 85c90c068f01eb440abcca1acbcb8699, type: 2}
+      objectReference: {fileID: 2100000, guid: 068b1a96c6a13fd4ab79e1ac8b97bc91, type: 2}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _magnitudeToLaunchEventSpeed
