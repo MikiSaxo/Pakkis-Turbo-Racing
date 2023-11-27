@@ -3006,6 +3006,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kayak
       objectReference: {fileID: 0}
+    - target: {fileID: 994450037199277019, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: maxParticles
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 994450037199277019, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: maxParticlesSpeedThreshold
+      value: 15.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
         type: 3}
       propertyPath: _bodyCoatMat
