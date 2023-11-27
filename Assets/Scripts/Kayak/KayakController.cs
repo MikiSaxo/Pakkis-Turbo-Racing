@@ -32,9 +32,10 @@ namespace Kayak
         public bool CanReduceDrag = true;
         // [SerializeField, Tooltip("The floaters associated to the kayak's rigidbody")] public Floaters FloatersRef;
 
+
         [Header("VFX"), SerializeField] public ParticleSystem LeftPaddleParticle;
         [SerializeField] public ParticleSystem RightPaddleParticle;
-        
+
         [Header("Materials"), SerializeField] private Material[] _kayakMatColor;
         [SerializeField] private Material[] _bodyMatColor;
         [SerializeField] private MeshRenderer _kayakMat;
@@ -47,6 +48,7 @@ namespace Kayak
         public UnityEvent OnKayakSpeedHigh;
         [SerializeField] private float _magnitudeToLaunchEventSpeed;
         [SerializeField] private Vector2 _speedEventRecurrenceRandomBetween;
+        [field: SerializeField] public float CooldownPaddleTurbo { get; set; }
 
         //privates
         private float _speedEventCountDown;
@@ -54,6 +56,8 @@ namespace Kayak
         private CharacterNavigationState.Direction _particleSide;
         private float _startDrag = 0f;
         private bool _sprintInProgress = false;
+
+        public float Speed;
 
 
         private void Start()
@@ -70,6 +74,8 @@ namespace Kayak
 
         private void Update()
         {
+            Speed = Rb.velocity.magnitude;
+
             if (!CanGo)
                 return;
 
@@ -82,7 +88,7 @@ namespace Kayak
         {
             if (!CanGo)
                 return;
-            
+
             DragReducing();
         }
 
@@ -127,13 +133,11 @@ namespace Kayak
             Vector3 velocity = Rb.velocity;
             KayakParameters kayakValues = Data.KayakValues;
 
-            
-            
+
             float velocityX = velocity.x;
-            // float maxClamp = CharacterManager.Instance.SprintInProgress ? 
-            //     kayakValues.MaximumFrontSprintVelocity :
-            //     kayakValues.MaximumFrontVelocity * CharacterManager.Instance.PlayerStats.MaximumSpeedMultiplier;
-            float maxClamp = kayakValues.MaximumFrontVelocity;
+            float maxClamp = _sprintInProgress
+                ? kayakValues.MaximumFrontSprintVelocity
+                : kayakValues.MaximumFrontVelocity;
 
             velocityX = Mathf.Clamp(velocityX, -maxClamp, maxClamp);
 
@@ -178,6 +182,7 @@ namespace Kayak
             _sprintInProgress = state;
             _trail.enabled = state;
         }
+
         private void ManageParticlePaddle()
         {
             if (_particleTimer > 0)

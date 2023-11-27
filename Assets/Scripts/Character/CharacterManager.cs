@@ -59,6 +59,8 @@ namespace Character
         [Range(0, 360)] public float BaseOrientation;
         [Header("VFX")] public ParticleSystem SplashLeft;
         public ParticleSystem SplashRight;
+        
+
 
         public UnityEvent OnPaddle;
         public UnityEvent OnEnterSprint;

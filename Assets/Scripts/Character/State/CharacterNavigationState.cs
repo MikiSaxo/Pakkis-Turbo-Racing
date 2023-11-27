@@ -47,6 +47,8 @@ namespace Character.State
         private float _timerLastInputTrigger = 0;
         private Direction _lastInputPaddle;
         private int _paddleCount = 0;
+        private float _paddleCooldownCurrent = 0;
+        private float _paddleCooldown = 0;
 
         #region Constructor
 
@@ -71,6 +73,8 @@ namespace Character.State
             _leftPaddleCooldown = _kayakValues.PaddleCooldown;
             _staticInputTimer = _kayakValues.StaticRotationCooldownAfterPaddle;
 
+            _paddleCooldown = CharacterManagerRef.KayakControllerProperty.CooldownPaddleTurbo;
+                
             //booleans
             CanBeMoved = true;
             CanCharacterMakeActions = true;
@@ -83,9 +87,21 @@ namespace Character.State
         {
             PaddleCooldownManagement();
 
-            if (_timerLastInputTrigger > _kayakValues.TimerMaxForSprint)
+            // if (_timerLastInputTrigger > _kayakValues.TimerMaxForSprint)
+            // {
+            //     CharacterManagerRef.SprintInProgress = false;
+            // }
+
+            if (_paddleCount > 0)
             {
-                CharacterManagerRef.SprintInProgress = false;
+                _paddleCooldownCurrent += Time.deltaTime;
+
+                if (_paddleCooldownCurrent >= _paddleCooldown)
+                {
+                    _paddleCooldownCurrent = 0;
+                    _paddleCount--;
+                    Debug.Log("reduce");
+                }
             }
         }
 
@@ -288,6 +304,13 @@ namespace Character.State
                 HandleBothPress();
             }
 
+            if (CharacterManagerRef.PaddleLeft && CharacterManagerRef.PaddleRight == false
+                || CharacterManagerRef.PaddleRight && CharacterManagerRef.PaddleLeft == false)
+            {
+                if(Manager.Instance.IsGameStarted)
+                    _paddleCount++;
+            }
+
             if (CharacterManagerRef.PaddleLeft && _leftPaddleCooldown <= 0 && CharacterManagerRef.PaddleRight == false)
             {
                 Direction direction =
@@ -296,8 +319,6 @@ namespace Character.State
                 _rightPaddleCooldown = _kayakValues.PaddleCooldown / 2;
                 CheckIfSprint(direction);
                 Paddle(direction);
-                if(Manager.Instance.IsGameStarted)
-                    _paddleCount++;
             }
 
             if (CharacterManagerRef.PaddleRight && _rightPaddleCooldown <= 0 && CharacterManagerRef.PaddleLeft == false)
@@ -308,8 +329,7 @@ namespace Character.State
                 _leftPaddleCooldown = _kayakValues.PaddleCooldown / 2;
                 CheckIfSprint(direction);
                 Paddle(direction);
-                if(Manager.Instance.IsGameStarted)
-                    _paddleCount++;
+           
             }
         }
 
@@ -362,7 +382,7 @@ namespace Character.State
 
         public void DisableSprint()
         {
-            CharacterManagerRef.SprintInProgress = false;
+            CharacterManagerRef.KayakControllerProperty.IsSprinting(false);
             CharacterManagerRef.OnStopSprint.Invoke();
         }
 
@@ -371,7 +391,7 @@ namespace Character.State
         /// </summary>
         private IEnumerator PaddleForceCurve()
         {
-            float sprintMultiply = CharacterManagerRef.SprintInProgress ? _kayakValues.MultiplyValueForceInSprint : 1;
+            float sprintMultiply = CharacterManagerRef.SprintInProgress ? _kayakValues.MultiplyValueForceInSprint*3 : 1;
             for (int i = 0; i <= _kayakValues.NumberOfForceAppliance; i++)
             {
                 float x = 1f / _kayakValues.NumberOfForceAppliance * i;
