@@ -316,6 +316,8 @@ namespace Character.State
                     //_paddleCooldownCurrent = 0;
                     _hasReleasePaddle = false;
                     Debug.Log($"Count {_paddleCount}");
+                    
+                    // if(_paddleCount > )
                 }
             }
             

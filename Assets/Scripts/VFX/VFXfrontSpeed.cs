@@ -37,7 +37,7 @@ public class VFXfrontSpeed : MonoBehaviour
         //Timed bursts
         //Ps.emissionRate = currentParticlesNumber;
 
-        print(currentParticlesNumber);
+        // print(currentParticlesNumber);
 
         emission.rateOverTime = currentParticlesNumber;
     }
