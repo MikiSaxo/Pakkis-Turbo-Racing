@@ -20,7 +20,7 @@ MonoBehaviour:
     TimerMinForSprint: 0.7
     TimerMaxForSprint: 1.8
     CollisionToBalanceMagnitudeDivider: 1.4
-    PaddleSideRotationForce: 1.85
+    PaddleSideRotationForce: 0.52
     PaddleCooldown: 0.99
     PaddleRotationDeceleration: 0.04
     PaddleForce: 95
