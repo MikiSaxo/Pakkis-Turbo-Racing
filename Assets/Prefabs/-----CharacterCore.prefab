@@ -3051,6 +3051,11 @@ PrefabInstance:
       propertyPath: RightPaddleParticle
       value: 
       objectReference: {fileID: 6544859958296798463}
+    - target: {fileID: 4950148468892883501, guid: bc06d1e844ba3694bbdecce4a99ba863,
+        type: 3}
+      propertyPath: DragWhenSprintAndCourant
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
