@@ -11,8 +11,8 @@ public class DeathZone : MonoBehaviour
     {
         if (other.GetComponent<CharacterManager>() != null)
         {
-            print("touche t mort");
-            other.GetComponent<CharacterManager>().IsDead = true;
+            // print("touche t mort");
+            other.GetComponent<CharacterManager>().KillPlayer();
             Manager.Instance.CheckIfAllPlayerDead();
             // gameObject.SetActive(false);
         }

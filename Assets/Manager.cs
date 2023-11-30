@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Character;
 using DG.Tweening;
+using Kayak;
 using TMPro;
 using Tools.SingletonClassBase;
 using UnityEngine;
@@ -34,6 +35,8 @@ public class Manager : Singleton<Manager>
     [SerializeField] private TMP_Text _startText;
     [SerializeField] private float _timeFadeStart = 2f;
     [SerializeField] private GameObject _startPanel;
+    [SerializeField] private Transform _deathMessageParent;
+    [SerializeField] private GameObject _deathMessagePrefab;
 
     private bool _canLaunchGame;
     private int _currentPosPlayer;
@@ -231,12 +234,21 @@ public class Manager : Singleton<Manager>
         }
     }
 
+    public void APlayerDied(ColorKayak color)
+    {
+        GameObject go = Instantiate(_deathMessagePrefab, _deathMessageParent);
+        go.GetComponent<DeathMessage>().Init(color);
+    }
+
     private void EndGame(ColorKayak color)
     {
+        if (IsGameEnded)
+            return;
+        
         IsGameStarted = false;
         IsGameEnded = true;
         PermanentColorWinner.Instance.KayakColor = color;
-        print($"fini {color} win");
+        // print($"fini {color} win");
         _bg.DOFade(1, 3).OnComplete(ChangeSceneVictory);
     }
 

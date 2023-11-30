@@ -128,6 +128,12 @@ namespace Character
             _hasInit = true;
         }
 
+        public void KillPlayer()
+        {
+            IsDead = true;
+            Manager.Instance.APlayerDied(KayakColor);
+        }
+
         private void Update()
         {
             if (IsDead || Manager.Instance.IsGameEnded)

@@ -115,7 +115,7 @@ namespace Character.State
                     if(_paddleCount < _paddleNbPaddleToSprint)
                         DisableSprint();
                     
-                    Debug.Log("reduce");
+                    // Debug.Log("reduce");
                 }
             }
         }
@@ -318,7 +318,7 @@ namespace Character.State
                     _paddleCount++;
                     //_paddleCooldownCurrent = 0;
                     _hasReleasePaddle = false;
-                    Debug.Log($"Count {_paddleCount}");
+                    // Debug.Log($"Count {_paddleCount}");
 
                     if (_paddleCount > _paddleNbPaddleToSprint + 1)
                         _paddleCount = _paddleNbPaddleToSprint + 1;
@@ -383,7 +383,7 @@ namespace Character.State
 
             if (_paddleCount >= _paddleNbPaddleToSprint)
             {
-                Debug.Log("im sprinting");
+                // Debug.Log("im sprinting");
                 CharacterManagerRef.KayakControllerProperty.IsSprinting(true);
                 CharacterManagerRef.OnEnterSprint.Invoke();
                 _isSprinting = true;
